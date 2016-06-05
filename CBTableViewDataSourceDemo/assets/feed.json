@@ -1,0 +1,49 @@
+[
+    {
+        "user":"程序员的那些事",
+        "avatar":"avatar1.jpg",
+        "content":"@Python开发者: 5月更多Python热文推荐： 《Python自然语言处理入门》《Python多线程详解》《简单 12 步理解 Python 装饰器》 《零基础 20 分钟搭建 SAE 微信个人号后台》",
+        "date":"今天 18:45"
+    },{
+        "user":"美女校花大厅",
+        "avatar":"avatar3.jpg",
+        "content":"时间会告诉我们，简单的喜欢，最长远；平凡中的陪伴，最心安；懂你的人，最温暖。",
+        "image":"image1.jpg",
+        "date":"昨天 18:45"
+    },{
+        "user":"JAVA大本营",
+        "avatar":"avatar4.jpg",
+        "content":"Android Handler Looper Message  详细分析",
+        "image":"image2.jpg",
+        "date":"前天 18:45"
+    },{
+        "user":"JAVA大本营",
+        "avatar":"avatar4.jpg",
+        "content":"我是一名聋哑的程序员",
+        "image":"image4.jpg",
+        "date":"6月3日 18:45"
+    },{
+        "user":"程序员俱乐部",
+        "avatar":"avatar5.jpg",
+        "content":"为什么JavaScript开发如此疯狂",
+        "image":"image3.jpg",
+        "date":"一个月前"
+    },{
+        "user":"IT技术博客大学习",
+        "avatar":"avatar2.jpg",
+        "content":"【Java跨语言调用实现方案在大型分布式 java 应用中，为了方便开发者，通常底层的 rpc 框架都会做一些调用的封装，让应用层开发人员在开发服务的时候只用编写简单的 pojo 对象就可以了，如流行的 spring rem...",
+        "date":"一年前"
+    },{
+        "user":"美女校花大厅",
+        "avatar":"avatar3.jpg",
+        "content":"第一年，小姨子说：“姐夫，你的iPad挺好的！”她姐把iPad送给她了。第二年：“姐夫，你的IBM笔记本挺好的！”她姐把IBM笔记本送给她了。第三年：“姐夫，你人挺不错的！”...我在等她姐发话。‍‍‍‍",
+        "image":"image5.jpg",
+        "date":"2010年6月3日 18:45"
+    },{
+        "user":"美女校花大厅",
+        "avatar":"avatar3.jpg",
+        "content":"任何时候都可以开始做自己想做的事，希望你不要用年龄和其他东西来束缚自己。年龄从来不是界限，除非你自己拿来为难自己。",
+        "image":"image6.jpg",
+        "date":"2010年5月2日 18:45"
+    }
+]

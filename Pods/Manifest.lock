@@ -1,0 +1,13 @@
+PODS:
+  - LTNavigationBar (2.1.2)
+  - Masonry (1.0.1)
+
+DEPENDENCIES:
+  - LTNavigationBar (~> 2.1)
+  - Masonry (~> 1.0)
+
+SPEC CHECKSUMS:
+  LTNavigationBar: bfc5fc06a83463009b9d99675f2a32dcbb631b00
+  Masonry: a1a931a0d08870ed8ae415a2ea5ea68ebcac77df
+
+COCOAPODS: 0.39.0
