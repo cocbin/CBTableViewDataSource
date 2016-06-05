@@ -7,7 +7,7 @@
 
 **使用CBTableViewDataSource之前**
 
-``` object-c
+``` objective-c
 
 // define a enum to split section
 
@@ -72,7 +72,7 @@ typedef NS_ENUM(NSInteger, SectionNameDefine) {
 
 **使用CBTableViewDataSource之后**
 
-``` object-c
+``` objective-c
 CBTableViewDataSource * dataSource = CBDataSource(self.tableView)
      .section()
      .cell([OneCell class])
@@ -141,18 +141,18 @@ pod 'CBTableViewDataSource', '~> 1.0.0'
 
 #### Import
 
-```
+``` objective-c
 #import <CBTableViewDataSource/CBTableViewDataSource.h>
 ```
 
 #### 声明
 
-```
+``` objective-c
 @property(nonatomic, retain) CBTableViewDataSource *  dataSource;
 ```
 #### 初始化
 
-```
+``` objective-c
 _dataSource = CBDataSource(self.tableView).section()
       .title(@"section one")
       .cell([TestCell class])
@@ -167,7 +167,7 @@ _dataSource = CBDataSource(self.tableView).section()
 **！！！注意！！！**
 不能直接为dataSource赋值
 
-```
+``` objective-c
 //BAD
 self.tableView.dataSource = CBDataSource(self.tableView)
     .section()
@@ -199,7 +199,7 @@ self.tableView.dataSource = CBDataSource(self.tableView)
 可以直接在block上对参数类型进行强制转换。
 如：
 
-``` object-c
+``` objective-c
 adapter(^(GoodsCell * cell,GoodsModel * goods,NSUInterger index){
     cell.goods = goods;
     return cell;
@@ -216,7 +216,7 @@ adapter(^(GoodsCell * cell,GoodsModel * goods,NSUInterger index){
 常用于取消当页面空白时，tableView呈现多余的下划线。
 如：
 
-``` object-c
+``` objective-c
 footerView(^(){
     //返回一个空白View，这样页面没内容时或者内容不足一页，就不会出现多余的线条。
     return [[UIView alloc]init];
