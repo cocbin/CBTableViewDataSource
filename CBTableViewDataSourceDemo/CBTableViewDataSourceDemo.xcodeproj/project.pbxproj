@@ -26,8 +26,6 @@
 		789F6CF6375628620EA0346B /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 789F69D37A10F6D57773D362 /* SecondViewController.m */; };
 		789F6E11154412297FCCC677 /* image5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 789F659E8E3DD763A2E727BF /* image5.jpg */; };
 		789F6EE6A8F82DFA7CB84CC2 /* avatar5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 789F639DE42F9786DAC34317 /* avatar5.jpg */; };
-		D12640031D03C27700B6393A /* CBTableViewDataSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D12640021D03C27700B6393A /* CBTableViewDataSource.framework */; };
-		D12640041D03C27700B6393A /* CBTableViewDataSource.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D12640021D03C27700B6393A /* CBTableViewDataSource.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D19DCFEA1D02EDA900774243 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D19DCFE91D02EDA900774243 /* main.m */; };
 		D19DCFED1D02EDA900774243 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D19DCFEC1D02EDA900774243 /* AppDelegate.m */; };
 		D19DCFF51D02EDA900774243 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D19DCFF41D02EDA900774243 /* Assets.xcassets */; };
@@ -89,20 +87,6 @@
 			remoteInfo = CBTableViewDataSourceDemo;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		D12640051D03C27700B6393A /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				D12640041D03C27700B6393A /* CBTableViewDataSource.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0AB198E3739F177CC76BB0B0 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "../Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -198,7 +182,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D12640031D03C27700B6393A /* CBTableViewDataSource.framework in Frameworks */,
 				D19DD0D91D030CFE00774243 /* CBTableViewDataSource.framework in Frameworks */,
 				1BC3A0A8571E26FA9A7D8DA1 /* libPods.a in Frameworks */,
 			);
@@ -422,7 +405,6 @@
 				D19DCFE31D02EDA800774243 /* Resources */,
 				A14510C3CC5E55171D68E605 /* Embed Pods Frameworks */,
 				56023D2410891AD45AA5CEA0 /* Copy Pods Resources */,
-				D12640051D03C27700B6393A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
