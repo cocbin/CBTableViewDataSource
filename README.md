@@ -2,6 +2,7 @@
 ### An elegant way to write `DataSource` and `Delegate` for `UITableView`.
 
 #### If there is any mistake in this translation,please contact with me.
+ [中文文档 (Document in Chinese)](https://github.com/cocbin/CBTableViewDataSource/blob/master/README_ZH.md)
 ### Introduction
 
 Recently，I am tring to restruct my code，and find out that every viewController includes a long gross code to define `dataSource` and `delegate`.As a result，I create CBTableViewDataSource when I was thinking how to write `dataSource` in an elegant way.
