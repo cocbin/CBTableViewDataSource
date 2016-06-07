@@ -247,19 +247,18 @@ In order to calculate the height if the cell automatically,for the situation whi
 
 **Make sure that a constrain should inclues two principles.**
 
-1.Any independent widget inside the cell have a certain positon and size。Such as 
-1. 对于cell内部每个独立的控件，都能确定位置和尺寸，比如左上角定在cell的左上角，然后设置高度宽度确定尺寸，或者设置右下角确定尺寸，前提是右下角相对的组件是能确定位置的。另外，UILabel和UIImageView，这种有内容的控件，只需要确定一个方向的尺寸，就会更具内容自动计算出另一个方向的尺寸，比如label知道宽度，和内容，就能算高度。
-2. 2.To the cell isself,the size must be assigned.
-2. 对于cell本身，必须能确定其尺寸。尺寸会通过约束其上下左右的控件来计算，这些所以约束其下和右的控件必须能确定位置和尺寸。值得说的是，这里很容易遗漏掉底部的约束，因为cell就算没有底部约束，也不会报错，但是不能满足计算出cell高度的必要条件。
+1.Any independent widget inside the cell should has a certain positon and a certain size。Such as the upper left corner is fixed on the upper left corner of the cell,set size with height and width，or set lower roght corner to calculate the size,which should be make sure is the positions of widgets are able to assign.
+What' more,the widget includes UILabel and UIImageView,just need to assign the size of one direction,another direction will be calculate automatically.For example, label know the width, and content, you can calculate the height.
+
+
+2. 2.To the cell isself,the size must be assigned.Size can be calculated by restricting its upper and lower widgets,these widgets should have definite positions and sizes.It is worth mentioning that it is easy to forget the restrain of the bottom.Because no exception will be raised the cell lack a restrain of the bottom,the necessary conditions for the calculation of the height of the cell are not satisfied.
 
 
 
 
 
 #### event(`^`(NSUInteger index,id data))
-Parament requests a Block，use to setup the click  event of cell,index is the posotion 
-参数要求一个Block，用于设置cell的点击事件，index表示点击了当前section的index位置，data表示当前点击位置的数据。
-
+Parament requests a Block，which used to setup the click  event of the cell,and 'index' is the index touch positon of the current section,'data' means the data of current touch position.
 
 #### title(NSString* title)
 Set title for each section().
