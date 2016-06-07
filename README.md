@@ -1,7 +1,7 @@
 # English
 # iOS development - DataSource - the mystical magic，help you to use TableView in an elegant way.
 
-### If there is any mistake in this English README,please contact with me.
+### If there is any mistake in this translation,please contact with me.
 ### Introduction
 
 Recently，I am tring to restruct my code，and find out that every viewController includes a long gross code to define `dataSource` and `delegate`.As result，I create CBTableViewDataSource when I restruct `dataSource` elegantly.
@@ -99,14 +99,14 @@ CBTableViewDataSource * dataSource = CBDataSource(self.tableView)
      .make();
 
 ```
-CBTableViewDataSource允许我们以函数式的方式定义dataSouce，逻辑顺序和页面的呈现顺序一致。
-每个section以section()开头，在section()之后，可以对该section进行一些配置，要求每个section必须设置cell，data，和adapter。cell表示该section使用的cell类，data表示该section的数据，adapter用于将数据和cell绑定起来。同时还能配置section中cell的高度，或者设置自动计算高度。也可是设置section的标题，cell的点击事件等等。
+CBTableViewDataSource allows us to define dataSouce in functional programming，logical sequences and pages are order consistent.
+Each section starts with section(),behind section(),can make some configures to section(),but must set up cell,data,adapter for each section().'cell' means this section has been used cell class,'data' is the data of section,adapter binds your data with cell.At the same time,it will set the cell height of section,or set an auto height calculation.What's more,can also set the title,the click event of cell and so on.
 
 CBTableViewDataSource mainly solves servel problems：
 
-1. 避免了书写各种乱七八糟的宏定义，自动注册cell类，自动设置identifier。
-2. 提供了一套完美解决不同高度cell的计算问题，提供自动计算cell高度的接口。
-3. 提供一套优雅的api，十分优雅并且有逻辑地书写dataSource。
+1.Avoid to use all kinds of strange macro definition.Cell class and identifier will be registed automatically.
+2.A perfect solution to solve the problems of different height of call,provide an interface to calculate the height of cell automatically.
+3.An elegent API to develop dataSource.
 
 ### DEMO
 DEMO includes two pages，**First**展示了复杂多section页面时的用法，通过一个仿各种市面上流行的APP的首页，体现了该框架书写dataSource条理清晰，逻辑顺序和页面呈现的顺序完全一致的优点。
@@ -115,12 +115,12 @@ DEMO includes two pages，**First**展示了复杂多section页面时的用法�
 ![IMG_0220](media/14650905664965/IMG_0220.png)![IMG_0221](media/14650905664965/IMG_0221.png)
 
 
-**second**页面通过一个Feed页面，展示了autoHeight的用法。只要调用`autoHeight`函数，一句话解决cell高度计算问题。
+**second**This page use a Feed page to show the usage of autiHeight.Just use function `autoHeight` and the problem of the calculation of the height of the cell will be solve.
 
 ![IMG_0222](media/14650905664965/IMG_0222.png)
 
 
-### 用法
+### Usage
 
 #### Install
 
@@ -168,7 +168,7 @@ _dataSource = CBDataSource(self.tableView).section()
 ```
 
 **！！！ Waring！！！**
-不能直接为dataSource赋值
+Do not reassign dataSource directly.
 
 ``` objective-c
 //BAD
@@ -179,27 +179,26 @@ self.tableView.dataSource = CBDataSource(self.tableView)
     .adapter(...)
     .make()
 ```
-因为UITableView的dataSource声明的是weak，赋值完因为没有任何强引用导致它的内存会被直接释放。
+Because dataSource in UITableView is a weak typing,it will be freed immediately with any strong reference。
 
 ### API
 
 #### CBDataSource(UITableView * tableView)
-创建一个`CBDataSourceMaker`对象，用于创建`CBTableViewDataSource`,传入一个需要绑定该`dataSource`的`tableView`对象
+Build a `CBDataSourceMaker` object，used to create `CBTableViewDataSource`,传入一个需要绑定该`dataSource`的`tableView`对象
 
 #### section()
-用于分割多个section，每个section的开头到要使用section()声明一个section的开始
-
+Use to spilt servel sections，section() is needed to assigned in the beginning of every section.
 #### cell(Class cell)
-传入一个cell的class，如`[UITableViewCell class]`。
-表示当前section都使用这个cell，注意，cell不需要注册，框架会自动注册并绑定identifier
+Give a class of cell,suck as `[UITableViewCell class]`
+The surrent section will all use this cell.And you need to know that the framework regists and binds identifier so the cell need not ti registes.
 
 #### data(NSArray * data)
-传入一个数组，表示用于呈现在界面上的数据
+Give an array with the data will be showed in the page.\
 
 #### adapter(`^`(id cell,id data,NSUInteger index))
-适配器,使用该方法将数据和cell绑定起来。
-参数是一个block，该block会传来一个cell对象，一个data对象，一个index。
-可以直接在block上对参数类型进行强制转换。
+Adapte,use this function to binds data with cell.
+Parament is a block,contains a cell object,a data object and an index.
+The block is allow to be casted.
 如：
 
 ``` objective-c
@@ -210,46 +209,47 @@ adapter(^(GoodsCell * cell,GoodsModel * goods,NSUInterger index){
 ```
 
 #### headerView(UIView*(`^`)())
-设置tableHeaderView
-参数是一个Block，要求返回一个UIView。
+set tableHeaderView
+The parament requests a Block，should contains an UIView。
 
 #### footerView(UIView*(`^`)())
-设置tableFooterView
-参数是一个Block，要求返回一个UIView。
-常用于取消当页面空白时，tableView呈现多余的下划线。
-如：
+set tableFooterView
+The parament is a Block,requests to return a UIView.
+The extra underlines will be removed in tableView when the page is empty.
+Example：
 
 ``` objective-c
 footerView(^(){
-    //返回一个空白View，这样页面没内容时或者内容不足一页，就不会出现多余的线条。
+    //Return an empty View，there is no line when the page without an content or the content is less than one page.
     return [[UIView alloc]init];
 })
 ```
 
 #### height(CGFloat * height)
-单独为每个section设置一个固定的高度。
-**有两个特例：**
+Set a fixed height for each section separately.
+**Two special examples：**
 
-- 当使用了autoHeight之后，该设置失效
-- 当在所有section之前设置height，将为所有section公共的height
+- This function will be unavailable after using autoHeight.
+- The height is public if set it before all sections.
 
 
 #### autoHeight()
-自动计算cell高度，用于cell高度不固定的情况。
+In order to calculate the height if the cell automatically,for the situation which the heights of cells are unfixed.
+**Mention：**
 
-**注意：**
+- If the the height of cell is fixes,please do not user autoHeight。Any  dispensable calculation of autoHeight will reduce the performence.Even through this framework has been designed with a perfect cache model,we'd better make good use of any performent.
+- This function only available to **autolayout**.
 
-- 当cell的高度固定时，请不要使用autoHeight，因为autoHeight计算高度会消耗一定性能，尽管该框架已经对高度计算做了非常完美的缓存处理，但是对于高性能的追求一定要做到精益求精。
-- 该设置只对**autolayout有效**。
+** Must set up right constrains：**
 
-**一定要正确设置好约束：**
+- All cells umst be putted into cell.contentView,unless values will be calculated wrongly
+- SET UP RIGHT COMPLETE CONSTRAINS!!!
 
-- 所有cell里面的组件一定要放在cell.contentView里面，不然会计算错误
-- 一定要有完整的约束。
+**Make sure that a constrain should inclues two principles.**
 
-**确定一个约束是否完整有两个原则**
-
+1.Any independent widget inside the cell have a certain positon and size。Such as 
 1. 对于cell内部每个独立的控件，都能确定位置和尺寸，比如左上角定在cell的左上角，然后设置高度宽度确定尺寸，或者设置右下角确定尺寸，前提是右下角相对的组件是能确定位置的。另外，UILabel和UIImageView，这种有内容的控件，只需要确定一个方向的尺寸，就会更具内容自动计算出另一个方向的尺寸，比如label知道宽度，和内容，就能算高度。
+2. 2.To the cell isself,the size must be assigned.
 2. 对于cell本身，必须能确定其尺寸。尺寸会通过约束其上下左右的控件来计算，这些所以约束其下和右的控件必须能确定位置和尺寸。值得说的是，这里很容易遗漏掉底部的约束，因为cell就算没有底部约束，也不会报错，但是不能满足计算出cell高度的必要条件。
 
 
@@ -257,14 +257,32 @@ footerView(^(){
 
 
 #### event(`^`(NSUInteger index,id data))
+Parament requests a Block，use to setup the click  event of cell,index is the posotion 
 参数要求一个Block，用于设置cell的点击事件，index表示点击了当前section的index位置，data表示当前点击位置的数据。
 
 
 #### title(NSString* title)
-用于设置每个section的标题。
+Set title for each section().
 
 #### make()
-在设置完毕之后执行，表示已经设置完毕了。
+Run after finished setup.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
