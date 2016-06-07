@@ -106,10 +106,10 @@ CBTableViewDataSource mainly solves servel problems：
 
 1.Avoid to use all kinds of strange macro definition.Cell class and identifier will be registed automatically.
 2.A perfect solution to solve the problems of different height of call,provide an interface to calculate the height of cell automatically.
-3.An elegent API to develop dataSource.
+3.An elegent API for dataSource development.
 
 ### DEMO
-DEMO includes two pages，**First**展示了复杂多section页面时的用法，通过一个仿各种市面上流行的APP的首页，体现了该框架书写dataSource条理清晰，逻辑顺序和页面呈现的顺序完全一致的优点。
+DEMO includes two pages，**First**Show multiple complex section usage in a page.The APP modeled a famous APP in China,mainly showed that the advantage of the framework when use to develop dataSource.
 
 
 ![IMG_0220](media/14650905664965/IMG_0220.png)![IMG_0221](media/14650905664965/IMG_0221.png)
@@ -184,7 +184,7 @@ Because dataSource in UITableView is a weak typing,it will be freed immediately 
 ### API
 
 #### CBDataSource(UITableView * tableView)
-Build a `CBDataSourceMaker` object，used to create `CBTableViewDataSource`,传入一个需要绑定该`dataSource`的`tableView`对象
+Build a `CBDataSourceMaker` object，used to create `CBTableViewDataSource`,assign an object which needed to be binds with `dataSource` and `tableView`.
 
 #### section()
 Use to spilt servel sections，section() is needed to assigned in the beginning of every section.
