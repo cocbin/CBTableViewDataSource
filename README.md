@@ -1,12 +1,13 @@
 # English
-# iOS开发之DataSource神奇魔法，优雅的写法让你轻松驾驭TableView
+# iOS development - DataSource - the mystical magic，help you to use TableView in a elegant way.
 
-### 简介
+### If there is any mistake in this English README,please contact with me.
+### Introduction
 
-最近在重构之前写的代码的时候，发现基本每个viewController里面都有一段又臭又长的代码用于定义tableView的`dataSource`和`delegate`，于是我在想，有没有更优雅的方式来书写`dataSource`，于是乎就产生了CBTableViewDataSource。
+Recently，I am tring to restruct my code，and find out that every viewController includes a long gross code to define `dataSource` and `delegate`.As result，I create CBTableViewDataSource when I restruct `dataSource` elegantly.
 
 
-**使用CBTableViewDataSource之前**
+**Before CBTableViewDataSource**
 
 ``` objective-c
 
@@ -71,7 +72,7 @@ typedef NS_ENUM(NSInteger, SectionNameDefine) {
 
 ```
 
-**使用CBTableViewDataSource之后**
+**After using CBTableViewDataSource**
 
 ``` objective-c
 CBTableViewDataSource * dataSource = CBDataSource(self.tableView)
@@ -101,14 +102,14 @@ CBTableViewDataSource * dataSource = CBDataSource(self.tableView)
 CBTableViewDataSource允许我们以函数式的方式定义dataSouce，逻辑顺序和页面的呈现顺序一致。
 每个section以section()开头，在section()之后，可以对该section进行一些配置，要求每个section必须设置cell，data，和adapter。cell表示该section使用的cell类，data表示该section的数据，adapter用于将数据和cell绑定起来。同时还能配置section中cell的高度，或者设置自动计算高度。也可是设置section的标题，cell的点击事件等等。
 
-CBTableViewDataSource主要解决了以下几个问题：
+CBTableViewDataSource mainly solves servel problems：
 
 1. 避免了书写各种乱七八糟的宏定义，自动注册cell类，自动设置identifier。
 2. 提供了一套完美解决不同高度cell的计算问题，提供自动计算cell高度的接口。
 3. 提供一套优雅的api，十分优雅并且有逻辑地书写dataSource。
 
-### DEMO解读
-DEMO包括两个页面，**First**展示了复杂多section页面时的用法，通过一个仿各种市面上流行的APP的首页，体现了该框架书写dataSource条理清晰，逻辑顺序和页面呈现的顺序完全一致的优点。
+### DEMO
+DEMO includes two pages，**First**展示了复杂多section页面时的用法，通过一个仿各种市面上流行的APP的首页，体现了该框架书写dataSource条理清晰，逻辑顺序和页面呈现的顺序完全一致的优点。
 
 
 ![IMG_0220](media/14650905664965/IMG_0220.png)![IMG_0221](media/14650905664965/IMG_0221.png)
@@ -123,7 +124,7 @@ DEMO包括两个页面，**First**展示了复杂多section页面时的用法，
 
 #### Install
 
-框架一共包括四个文件
+The framework includes four files at all.
 
 ```
 CBDataSourceMaker.h
@@ -133,12 +134,13 @@ CBTableViewDataSource.h
 CBTableViewDataSource.m
 ```
 
-可以直接通过Pod下载使用
+Download and use from Pod directly
+
 
 ```
 pod 'CBTableViewDataSource', '~> 1.0.0'
 ```
-或者直接将上述四个文件复制到你的项目中即可使用。
+Or copy four files above into your project directly.
 
 #### Import
 
@@ -146,12 +148,12 @@ pod 'CBTableViewDataSource', '~> 1.0.0'
 #import <CBTableViewDataSource/CBTableViewDataSource.h>
 ```
 
-#### 声明
+####  Declaration
 
 ``` objective-c
 @property(nonatomic, retain) CBTableViewDataSource *  dataSource;
 ```
-#### 初始化
+#### Initialization
 
 ``` objective-c
 _dataSource = CBDataSource(self.tableView).section()
@@ -165,7 +167,7 @@ _dataSource = CBDataSource(self.tableView).section()
       .make()
 ```
 
-**！！！注意！！！**
+**！！！ Waring！！！**
 不能直接为dataSource赋值
 
 ``` objective-c
