@@ -1,5 +1,5 @@
 # English
-# iOS development - DataSource - the mystical magic，help you to use TableView in a elegant way.
+# iOS development - DataSource - the mystical magic，help you to use TableView in an elegant way.
 
 ### If there is any mistake in this English README,please contact with me.
 ### Introduction
