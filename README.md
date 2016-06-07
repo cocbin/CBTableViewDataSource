@@ -7,7 +7,7 @@
 Recently，I am tring to restruct my code，and find out that every viewController includes a long gross code to define `dataSource` and `delegate`.As result，I create CBTableViewDataSource when I restruct `dataSource` elegantly.
 
 
-**Before CBTableViewDataSource**
+**Before using CBTableViewDataSource**
 
 ``` objective-c
 
