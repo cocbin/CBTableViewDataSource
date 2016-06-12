@@ -13,6 +13,5 @@
 
 @property(nonatomic, retain) SecondViewModel * viewModel;
 
-@property(nonatomic, retain) CBTableViewDataSource * dataSource;
 @property(nonatomic, retain) UITableView * tableView;
 @end

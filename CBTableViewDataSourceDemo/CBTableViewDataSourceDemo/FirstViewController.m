@@ -14,6 +14,7 @@
 #import "GoodsCell.h"
 #import "SplitView.h"
 #import "UINavigationBar+Awesome.h"
+#import "View+MASAdditions.h"
 #import <CBTableViewDataSource/CBTableViewDataSource.h>
 
 @interface FirstViewController ()
@@ -45,7 +46,6 @@ void(^didScroll)(UIScrollView * scrollView);
     self.viewModel.dataUpdate = ^(){
         [weakSelf.tableView reloadData];
     };
-    [self dataSource];
     [self.viewModel fetchData];
 
 }
@@ -74,100 +74,91 @@ void(^didScroll)(UIScrollView * scrollView);
         _tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
         _tableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
         [self.view addSubview:_tableView];
+
+        [_tableView cb_makeDataSource:^(CBTableViewDataSourceMaker * make) {
+
+            [make commitEditing:^(UITableView * tableView,UITableViewCellEditingStyle * editingStyle, NSIndexPath * indexPath) {
+                NSLog(@"ttt");
+            }];
+            [make scrollViewDidScroll:didScroll];
+            [make makeSection:^(CBTableViewSectionMaker * section) {
+                section.cell([CycleScrollViewCell class])
+                        .data(@[self.viewModel.ads])
+                        .adapter(^(CycleScrollViewCell * cell,NSArray * data,NSUInteger index){
+                            cell.data = data;
+                        })
+                        .height(SCREEN_WIDTH * 0.48f);
+            }];
+            [make makeSection:^void(CBTableViewSectionMaker * section) {
+                section.cell([HomeCategoryCell class])
+                        .data(@[self.viewModel.category])
+                        .adapter(^(HomeCategoryCell * cell,NSArray * data,NSUInteger index){
+                            cell.category = data;
+                        })
+                        .height(SCREEN_WIDTH * 0.48f);
+            }];
+            [make makeSection:^void(CBTableViewSectionMaker * section) {
+                section
+                    .cell([SplitView class])
+                    .data(@[@"热门活动"])
+                    .adapter(^(SplitView * cell,NSString * data,NSUInteger index){
+                        cell.label.text = [NSString stringWithFormat:@"—  %@ —",data];
+                    })
+                    .height(60);
+            }];
+
+            [make makeSection:^void(CBTableViewSectionMaker * section) {
+                section
+                    .cell([HomeActivityCell class])
+                    .data(self.viewModel.activity)
+                    .adapter(^(HomeActivityCell * cell,NSDictionary * data,NSUInteger index){
+                        [cell.imgView setImage:[UIImage imageNamed:data[@"image"]]];
+                    })
+                    .height(SCREEN_WIDTH * 0.36f);
+            }];
+            [make makeSection:^void(CBTableViewSectionMaker * section) {
+                section.cell([SplitView class])
+                        .data(@[@"热门商品"])
+                        .adapter(^(SplitView * cell,NSString * data,NSUInteger index){
+                            cell.label.text = [NSString stringWithFormat:@"—  %@ —",data];
+                        })
+                        .height(60);
+            }];
+            [make makeSection:^void(CBTableViewSectionMaker * section) {
+                section
+                    .cell([GoodsCell class])
+                    .data(self.viewModel.hotGoods)
+                    .adapter(^(GoodsCell * cell,NSDictionary * data,NSUInteger index){
+                        [cell.imgView setImage:[UIImage imageNamed:data[@"image"]]];
+                        [cell.nameView setText:data[@"name"]];
+                        [cell.priceView setText:[NSString stringWithFormat:@"$%@",data[@"price"]]];
+                    })
+                    .height(100);
+            }];
+
+            [make makeSection:^void(CBTableViewSectionMaker * section)  {
+                section.cell([SplitView class])
+                    .data(@[@"猜你喜欢"])
+                    .adapter(^ (SplitView * cell,NSString * data,NSUInteger index){
+                        cell.label.text = [NSString stringWithFormat:@"— %@ —",data];
+                    })
+                    .height(60);
+            }];
+
+            [make makeSection:^void(CBTableViewSectionMaker * section) {
+                section.cell([GoodsCell class])
+                        .data(self.viewModel.hotGoods)
+                        .adapter(^(GoodsCell * cell,NSDictionary * data,NSUInteger index) {
+                            [cell.imgView setImage:[UIImage imageNamed:data[@"image"]]];
+                            [cell.nameView setText:data[@"name"]];
+                            [cell.priceView setText:[NSString stringWithFormat:@"$%@",data[@"price"]]];
+                        })
+                        .height(100);
+            }];
+
+        }];
     }
     return _tableView;
-}
-
-- (CBTableViewDataSource *)dataSource {
-    if(!_dataSource) {
-        _dataSource = CBDataSource(self.tableView)
-                //-------------- advertisement section --------------
-                .section()
-                .cell([CycleScrollViewCell class])
-                .data(@[self.viewModel.ads])
-                .adapter(^UITableViewCell *(CycleScrollViewCell * cell,NSArray * data,NSUInteger index){
-                    cell.data = self.viewModel.ads;
-                    return cell;
-                })
-                .height(SCREEN_WIDTH * 0.48f)
-
-                        //-------------- category section --------------
-                .section()
-                .cell([HomeCategoryCell class])
-                .data(@[self.viewModel.category])
-                .adapter(^UITableViewCell * (HomeCategoryCell * cell,NSArray * data,NSUInteger index){
-                    cell.category = data;
-                    return cell;
-                })
-                .height(SCREEN_WIDTH * 0.48f)
-
-                        //-------------- activity section --------------
-                .section()
-                .cell([SplitView class])
-                .data(@[@"热门活动"])
-                .adapter(^UITableViewCell * (SplitView * cell,NSString * data,NSUInteger index){
-                    cell.label.text = [NSString stringWithFormat:@"—  %@ —",data];
-                    return cell;
-                })
-                .height(60)
-
-
-                .section()
-                .cell([HomeActivityCell class])
-                .data(self.viewModel.activity)
-                .adapter(^UITableViewCell * (HomeActivityCell * cell,NSDictionary * data,NSUInteger index){
-                    [cell.imgView setImage:[UIImage imageNamed:data[@"image"]]];
-                    return cell;
-                })
-                .height(SCREEN_WIDTH * 0.36f)
-
-                        //-------------- hot goods section --------------
-                .section()
-                .cell([SplitView class])
-                .data(@[@"热门商品"])
-                .adapter(^UITableViewCell * (SplitView * cell,NSString * data,NSUInteger index){
-                    cell.label.text = [NSString stringWithFormat:@"—  %@ —",data];
-                    return cell;
-                })
-                .height(60)
-
-
-                .section()
-                .cell([GoodsCell class])
-                .data(self.viewModel.hotGoods)
-                .adapter(^UITableViewCell * (GoodsCell * cell,NSDictionary * data,NSUInteger index){
-                    [cell.imgView setImage:[UIImage imageNamed:data[@"image"]]];
-                    [cell.nameView setText:data[@"name"]];
-                    [cell.priceView setText:[NSString stringWithFormat:@"$%@",data[@"price"]]];
-                    return cell;
-                })
-                .height(100)
-
-                        //-------------- rand goods section --------------//随机
-
-                .section()
-                .cell([SplitView class])
-                .data(@[@"猜你喜欢"])
-                .adapter(^UITableViewCell * (SplitView * cell,NSString * data,NSUInteger index){
-                    cell.label.text = [NSString stringWithFormat:@"— %@ —",data];
-                    return cell;
-                })
-                .height(60)
-
-                .section()
-                .cell([GoodsCell class])
-                .data(self.viewModel.hotGoods)
-                .adapter(^UITableViewCell * (GoodsCell * cell,NSDictionary * data,NSUInteger index) {
-                    [cell.imgView setImage:[UIImage imageNamed:data[@"image"]]];
-                    [cell.nameView setText:data[@"name"]];
-                    [cell.priceView setText:[NSString stringWithFormat:@"$%@",data[@"price"]]];
-                    return cell;
-                })
-                .height(100)
-                .didScroll(didScroll)
-                .make();
-    }
-    return _dataSource;
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

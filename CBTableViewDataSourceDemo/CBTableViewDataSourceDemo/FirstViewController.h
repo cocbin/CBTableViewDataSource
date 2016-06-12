@@ -15,6 +15,5 @@
 
 @property(nonatomic, retain) FirstViewModel * viewModel;
 @property(nonatomic, retain) UITableView * tableView;
-@property(nonatomic, retain) CBTableViewDataSource * dataSource;
 
 @end

@@ -26,6 +26,7 @@
 		789F6CF6375628620EA0346B /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 789F69D37A10F6D57773D362 /* SecondViewController.m */; };
 		789F6E11154412297FCCC677 /* image5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 789F659E8E3DD763A2E727BF /* image5.jpg */; };
 		789F6EE6A8F82DFA7CB84CC2 /* avatar5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 789F639DE42F9786DAC34317 /* avatar5.jpg */; };
+		D16DC3DE1D0D66A000DF572B /* CBTableViewDataSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D16DC3DD1D0D66A000DF572B /* CBTableViewDataSource.framework */; };
 		D19DCFEA1D02EDA900774243 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D19DCFE91D02EDA900774243 /* main.m */; };
 		D19DCFED1D02EDA900774243 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D19DCFEC1D02EDA900774243 /* AppDelegate.m */; };
 		D19DCFF51D02EDA900774243 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D19DCFF41D02EDA900774243 /* Assets.xcassets */; };
@@ -66,7 +67,6 @@
 		D19DD0D11D02F9CE00774243 /* FirstViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D19DD0D01D02F9CE00774243 /* FirstViewModel.m */; };
 		D19DD0D31D02FA7900774243 /* iconfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D19DD0D21D02FA7900774243 /* iconfont.ttf */; };
 		D19DD0D71D02FC3300774243 /* BaseNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D19DD0D61D02FC3300774243 /* BaseNavigationViewController.m */; };
-		D19DD0D91D030CFE00774243 /* CBTableViewDataSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D19DD0D81D030CFE00774243 /* CBTableViewDataSource.framework */; };
 		D19DD0DE1D03130400774243 /* HomeActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D19DD0DB1D03130400774243 /* HomeActivityCell.m */; };
 		D19DD0DF1D03130400774243 /* HomeCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D19DD0DD1D03130400774243 /* HomeCategoryCell.m */; };
 /* End PBXBuildFile section */
@@ -118,6 +118,7 @@
 		9A33948C3B5480D41722B0F7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "../Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		CA3C787E6E50FFA8477B1F93 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D12640021D03C27700B6393A /* CBTableViewDataSource.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = CBTableViewDataSource.framework; path = "/Users/Home/Library/Developer/Xcode/DerivedData/CBTableViewDataSourceDemo-besihybosjmnpydgetfvwaxgwkwq/Build/Products/Debug-iphoneos/CBTableViewDataSource.framework"; sourceTree = "<absolute>"; };
+		D16DC3DD1D0D66A000DF572B /* CBTableViewDataSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CBTableViewDataSource.framework; path = "../../../Library/Developer/Xcode/DerivedData/CBTableViewDataSourceDemo-besihybosjmnpydgetfvwaxgwkwq/Build/Products/Debug-iphonesimulator/CBTableViewDataSource.framework"; sourceTree = "<group>"; };
 		D19DCFE51D02EDA800774243 /* CBTableViewDataSourceDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CBTableViewDataSourceDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D19DCFE91D02EDA900774243 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D19DCFEB1D02EDA900774243 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -170,7 +171,6 @@
 		D19DD0D21D02FA7900774243 /* iconfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = iconfont.ttf; path = ../assets/iconfont.ttf; sourceTree = "<group>"; };
 		D19DD0D51D02FC3300774243 /* BaseNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationViewController.h; sourceTree = "<group>"; };
 		D19DD0D61D02FC3300774243 /* BaseNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationViewController.m; sourceTree = "<group>"; };
-		D19DD0D81D030CFE00774243 /* CBTableViewDataSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CBTableViewDataSource.framework; path = "../CBTableViewDataSource/build/Debug-iphoneos/CBTableViewDataSource.framework"; sourceTree = "<group>"; };
 		D19DD0DA1D03130400774243 /* HomeActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeActivityCell.h; sourceTree = "<group>"; };
 		D19DD0DB1D03130400774243 /* HomeActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeActivityCell.m; sourceTree = "<group>"; };
 		D19DD0DC1D03130400774243 /* HomeCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCategoryCell.h; sourceTree = "<group>"; };
@@ -182,7 +182,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D19DD0D91D030CFE00774243 /* CBTableViewDataSource.framework in Frameworks */,
+				D16DC3DE1D0D66A000DF572B /* CBTableViewDataSource.framework in Frameworks */,
 				1BC3A0A8571E26FA9A7D8DA1 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -216,7 +216,7 @@
 		B49E11DC7CD42F4DE0D68AE8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D19DD0D81D030CFE00774243 /* CBTableViewDataSource.framework */,
+				D16DC3DD1D0D66A000DF572B /* CBTableViewDataSource.framework */,
 				CA3C787E6E50FFA8477B1F93 /* libPods.a */,
 			);
 			name = Frameworks;

@@ -76,28 +76,28 @@ typedef NS_ENUM(NSInteger, SectionNameDefine) {
 **Using CBTableViewDataSource**
 
 ``` objective-c
-CBTableViewDataSource * dataSource = CBDataSource(self.tableView)
-     .section()
-     .cell([OneCell class])
-     .data(self.viewModel.oneData)
-     .adapter(^UITableViewCell *(OneCell * cell,NSDictionary * data,NSUInteger index){
+[_tableView cb_makeDataSource:^(CBTableViewDataSourceMaker * make) {
+    // section one
+    [make makeSection:^(CBTableViewSectionMaker *section) {
+        section.cell([OneCell class])
+            .data(self.viewModel.oneDate)
+            .adapter(^(OneCell * cell,id data,NSUInteger index){
+                [cell configure:data];
+            })
+            .autoHeight();
+    }];
+    // section two
+    [make makeSection:^(CBTableViewSectionMaker *section) {
+        section.cell([TwoCell class])
+            .data(self.viewModel.twoData)
+            .adapter(^(FeedCell * cell,id data,NSUInteger index){
+                [cell configure:data];
+            })
+            .autoHeight();
+    }];
 
-         //bind data form data to cell
-
-         return cell;
-     })
-
-     .section()
-     .cell([TwoCell class])
-     .data(self.viewModel.twoData)
-     .adapter(^UITableViewCell *(TwoCell * cell,NSDictionary * data,NSUInteger index){
-
-         //bind data form data to cell
-
-         return cell;
-     })
-     // ...
-     .make();
+    // ... so on    
+}];
 
 ```
 CBTableViewDataSource allows us to define `dataSouce` in functional programming，logical sequences and pages are order consistent.Each section starts with `section()`,behind `section()`,can make some configures to section。But must set up cell,data,adapter for each section.`cell` is the cell class which section is using,`data` is the data of section,and `adapter` binds your data with the cell.At the same time,it will set the cell height of the section,or use an auto height calculation.What's more,you can also set the title,or the touch event of the cell and so on.
@@ -112,35 +112,44 @@ CBTableViewDataSource mainly solves servel problems：
 DEMO includes two pages，**First** Show multiple complex section usages in a page.The APP modeled a famous APP in China,mainly showed that the advantage of the framework when use to develop dataSource.
 
 
-![IMG_0220](media/14650905664965/IMG_0220.png)![IMG_0221](media/14650905664965/IMG_0221.png)
+ <img src="media/IMG_0220.png" width = "400" alt="demo" align=center />
+
+<img src="media/IMG_0221.png" width = "400" alt="demo" align=center />
 
 
 **second** This page use a Feed page to show the usage of autoHeight.Just need to use function `autoHeight` and the calculation of the height of the cell will be solve.
 
-![IMG_0222](media/14650905664965/IMG_0222.png)
+<img src="media/IMG_0222.png" width = "400" alt="demo" align=center />
 
 
 ### Usage
 
 #### Install
 
-The framework includes four files at all.
+The framework contains the following files.
 
 ```
-CBDataSourceMaker.h
-CBDataSourceMaker.m
-
+CBBaseTableViewDataSource.h
+CBBaseTableViewDataSource.m
+CBDataSourceHelper.h
+CBDataSourceHelper.m
+CBDataSourceSection.h
+CBDataSourceSection.m
 CBTableViewDataSource.h
-CBTableViewDataSource.m
+CBTableViewDataSourceMaker.h
+CBTableViewDataSourceMaker.m
+CBTableViewSectionMaker.h
+CBTableViewSectionMaker.m
+
 ```
 
 Download and use files from Pod directly
 
 
 ```
-pod 'CBTableViewDataSource', '~> 1.0.0'
+pod 'CBTableViewDataSource'
 ```
-Or copy four files above into your project directly.
+Or copy those files above into your project directly.
 
 #### Import
 
@@ -148,40 +157,71 @@ Or copy four files above into your project directly.
 #import <CBTableViewDataSource/CBTableViewDataSource.h>
 ```
 
-####  Declaration
+#### Set DataSource for your TableView
 
 ``` objective-c
-@property(nonatomic, retain) CBTableViewDataSource *  dataSource;
+[_tableView cb_makeDataSource:^(CBTableViewDataSourceMaker * make) {
+    // section one
+    [make makeSection:^(CBTableViewSectionMaker *section) {
+        section.cell([OneCell class])
+            .data(self.viewModel.oneDate)
+            .adapter(^(OneCell * cell,id data,NSUInteger index){
+                [cell configure:data];
+            })
+            .autoHeight();
+    }];
+    // section two
+    [make makeSection:^(CBTableViewSectionMaker *section) {
+        section.cell([TwoCell class])
+            .data(self.viewModel.twoData)
+            .adapter(^(FeedCell * cell,id data,NSUInteger index){
+                [cell configure:data];
+            })
+            .autoHeight();
+    }];
+
+    // ... so on    
+}];
 ```
-#### Initialization
+
+## API
+
+### CBTableViewDataSourceMaker
+
+CBTableViewDataSourceMaker was used to create dataSource，like this：
 
 ``` objective-c
-_dataSource = CBDataSource(self.tableView).section()
-      .title(@"section one")
-      .cell([TestCell class])
-      .data(array)
-      .adapter(^(TestCell * cell,NSDictionary * dic,NSUInteger index){
-          cell.content.text = dic[@"content"];
-          return cell;
-      })
-      .make()
+[_tableView cb_makeDataSource:^(CBTableViewDataSourceMaker * make) {
+    // ... do somethings
+}];
 ```
 
-**！！！ Waring！！！**
-Do not reassign dataSource directly.
+#### headerView(UIView*( ^ )())
+Set tableHeaderView.The parament requests a Block，the block should contains an UIView。
+
+#### footerView(UIView*( ^ )())
+set tableFooterView.The parament is a Block,the block requests a UIView.
+The extra lines will be removed in tableView when the page is empty.
+Example：
 
 ``` objective-c
-//BAD
-self.tableView.dataSource = CBDataSource(self.tableView)
-    .section()
-    .cell(...)
-    .data(...)
-    .adapter(...)
-    .make()
+footerView(^(){
+    //Return an empty View，there is no line when the page without any content or the content is less than one page.
+    return [[UIView alloc]init];
+})
 ```
-Because dataSource in UITableView is a weak typing,it will be freed without any strong reference after assigned。
+#### - (void)commitEditing:(void (^ )(UITableView * tableView,UITableViewCellEditingStyle * editingStyle, NSIndexPath * indexPath))block
+ call the method,you can make the cell able to sideslip,and show the delete button.
 
-### API
+#### - (void)scrollViewDidScroll:(void (^ )(UIScrollView * scrollView))block 
+call the method to listen in the tableView scrolling event.
+
+#### - (void)makeSection:(void (^ )(CBTableViewSectionMaker * section))block 
+call the method to make a section.
+
+
+
+### CBTableViewSectionMaker
 
 #### CBDataSource(UITableView * tableView)
 Build a `CBDataSourceMaker` object，use it  to create `CBTableViewDataSource`,assign a `tableView` object which need to be binded with `dataSource`.
@@ -207,27 +247,10 @@ adapter(^(GoodsCell * cell,GoodsModel * goods,NSUInterger index){
 })
 ```
 
-#### headerView(UIView*(`^`)())
-Set tableHeaderView.The parament requests a Block，the block should contains an UIView。
-
-#### footerView(UIView*(`^`)())
-set tableFooterView.The parament is a Block,the block requests a UIView.
-The extra lines will be removed in tableView when the page is empty.
-Example：
-
-``` objective-c
-footerView(^(){
-    //Return an empty View，there is no line when the page without any content or the content is less than one page.
-    return [[UIView alloc]init];
-})
-```
-
 #### height(CGFloat * height)
 Set a fixed height for each section separately.
-**Two special examples：**
-- This function will be unavailable after using autoHeight.
-- The height is public for all section if set it before all sections.
 
+- This function will be unavailable after using autoHeight.
 
 #### autoHeight()
 In order to calculate the height of the cell automatically,for the situation which the heights of cells are unfixed.
@@ -236,7 +259,7 @@ In order to calculate the height of the cell automatically,for the situation whi
 - If the the height of cell is fixed,please do not user autoHeight.Any dispensable calculation of autoHeight will reduce the performence.Even through that framework has been designed with a perfect cache model,we'd better make good use of any performence.
 - This function only available to **autolayout**.
 
-** Must set up right constrains：**
+**Must set up right constrains:**
 
 - All cells must be put into cell.contentView,else will be calculated wrongly
 - SET UP RIGHT COMPLETE CONSTRAINS!!!
@@ -251,12 +274,10 @@ What' more,the widget includes UILabel and UIImageView,just need to assign the s
 
 
 
-
-
-#### event(`^`(NSUInteger index,id data))
+#### event( ^ (NSUInteger index,id data))
 Parament requests a Block，which used to set up the click event of the cell,and 'index' is the index touch positon of the current section,'data' is the data of current click position.
 
-#### title(NSString* title)
+#### title(NSString * title)
 Set title for each section.
 
 #### make()

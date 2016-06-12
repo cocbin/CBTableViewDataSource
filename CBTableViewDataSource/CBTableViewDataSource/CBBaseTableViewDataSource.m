@@ -1,70 +1,54 @@
 //
-// Created by Cocbin on 16/6/3.
+// Created by Cocbin on 16/6/12.
 // Copyright (c) 2016 Cocbin. All rights reserved.
 //
 
 #import <objc/runtime.h>
-#import "CBTableViewDataSource.h"
+#import "CBBaseTableViewDataSource.h"
+#import "CBDataSourceSection.h"
 
-@implementation CBTableViewDataSource
-
+@implementation CBBaseTableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.sectionCount;
+    return self.sections.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSUInteger beginOfSection = [self.dataBeginOfSection[(NSUInteger) section] unsignedIntValue];
-    NSInteger  count = ((NSArray *)self.dataList[beginOfSection]).count;
-    return count;
+    return self.sections[(NSUInteger) section].data.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSUInteger section = (NSUInteger) indexPath.section;
     NSUInteger index = (NSUInteger) indexPath.row;
-    id cell = [tableView dequeueReusableCellWithIdentifier:self.identifierOfSection[section] forIndexPath:indexPath];
-    AdaptBlock adaptBlock = self.adapterList[section];
+    id cell = [tableView dequeueReusableCellWithIdentifier:self.sections[section].identifier forIndexPath:indexPath];
+    AdapterBlock adaptBlock = self.sections[section].adapter;
     //NSLog(@"adaptBlock %@", [adaptBlock isEqual:nil]);
-    if([adaptBlock isEqual:  [NSNull null]]) {
+    if(!adaptBlock) {
 #if DEBUG
         NSLog(@"Warning : adapter block for section %ld is null. please use dataSourceMake.adapter(^block) set it", (long) section);
 #endif
         return cell;
     }
-    NSUInteger beginOfSection = [self.dataBeginOfSection[section] unsignedIntValue];
-    id data = self.dataList[beginOfSection][index];
-
-
-    if([data isKindOfClass:[NSDictionary class]]) {
-        NSUInteger countOfSection = [self.dataCountOfSection[section] unsignedIntValue];
-        NSMutableDictionary * dic = [[NSMutableDictionary alloc] initWithDictionary:self.dataList[beginOfSection][index]];
-        if(countOfSection > 1) {
-            NSInteger i = 1;
-            while(countOfSection != 0) {
-                [dic addEntriesFromDictionary:self.dataList[beginOfSection+i][index]];
-                countOfSection --;
-            }
-        }
-        cell =  adaptBlock(cell,dic,index);
-    } else {
-        cell =  adaptBlock(cell,data,index);
-    }
-
+    id data = self.sections[section].data[index];
+    adaptBlock(cell,data,index);
     return cell;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return self.title[@(section)];
+    return self.sections[(NSUInteger) section].headerTitle;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    return self.sections[(NSUInteger) section].footerTitle;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSUInteger section = (NSUInteger) indexPath.section;
     NSUInteger index = (NSUInteger) indexPath.row;
-    NSString * identifier = _identifierOfSection[section];
-    if([self.needAutoHeightList[section] boolValue]) {
-        NSUInteger beginOfSection = [self.dataBeginOfSection[section] unsignedIntValue];
-        AdaptBlock adaptBlock = self.adapterList[section];
-        id data = self.dataList[beginOfSection][index];
+    NSString * identifier = self.sections[section].identifier;
+    if(self.sections[section].isAutoHeight) {
+        AdapterBlock adapterBlock = self.sections[section].adapter;
+        id data = self.sections[section].data[index];
 
         NSNumber * numHeight = objc_getAssociatedObject(data, NSSelectorFromString(identifier));
 
@@ -72,32 +56,17 @@
             UITableViewCell * cell = [self cellForReuseIdentifier:identifier withTableView:tableView];
             [cell prepareForReuse];
 
-            if(![adaptBlock isEqual:[NSNull null]]) {
-                if([data isKindOfClass:[NSDictionary class]]) {
-                    NSUInteger countOfSection = [self.dataCountOfSection[section] unsignedIntValue];
-                    NSMutableDictionary * dic = [[NSMutableDictionary alloc] initWithDictionary:self.dataList[beginOfSection][index]];
-                    if(countOfSection > 1) {
-                        NSInteger i = 1;
-                        while(countOfSection != 0) {
-                            [dic addEntriesFromDictionary:self.dataList[beginOfSection+i][index]];
-                            countOfSection --;
-                        }
-                    }
-                    adaptBlock(cell,dic,index);
-                } else {
-                    adaptBlock(cell,data,index);
-                }
+            if(![adapterBlock isEqual:[NSNull null]]) {
+                adapterBlock(cell,data,index);
             }
-
             CGFloat height = [self systemFittingHeightForConfiguratedCell:cell withTalbView:tableView];
-
             objc_setAssociatedObject(data,NSSelectorFromString(identifier),@(height),OBJC_ASSOCIATION_RETAIN_NONATOMIC);
             return height;
         } else {
             return [numHeight floatValue];
         }
-    } else if([self.staticHeightList[section] floatValue]>0){
-        return [self.staticHeightList[section] floatValue];
+    } else if(self.sections[section].staticHeight >0){
+        return self.sections[section].staticHeight;
     } else {
         return tableView.rowHeight;
     }
@@ -106,38 +75,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSUInteger section = (NSUInteger) indexPath.section;
-    EventBlock event= self.eventList[section];
+    EventBlock event= (EventBlock) self.sections[section].event;
 
-    if([event isEqual:[NSNull null]]) {
+    if(!event) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         return ;
     }
 
     NSUInteger index = (NSUInteger) indexPath.row;
-    NSUInteger beginOfSection = [self.dataBeginOfSection[section] unsignedIntValue];
-    id data = self.dataList[beginOfSection][index];
-
-    if([data isKindOfClass:[NSDictionary class]]) {
-        NSUInteger countOfSection = [self.dataCountOfSection[section] unsignedIntValue];
-        NSMutableDictionary * dic = [[NSMutableDictionary alloc] initWithDictionary:self.dataList[beginOfSection][index]];
-        if(countOfSection > 1) {
-            NSInteger i = 1;
-            while(countOfSection != 0) {
-                [dic addEntriesFromDictionary:self.dataList[beginOfSection+i][index]];
-                countOfSection --;
-            }
-        }
-        event(index,dic);
-    } else {
-        event(index,data);
-    }
+    id data = self.sections[section].data[index];
+    event(index,data);
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if(self.didScroll) {
-        self.didScroll(scrollView);
-    }
 }
 
 - (__kindof UITableViewCell *)cellForReuseIdentifier:(NSString *)identifier withTableView:(UITableView*)tableView{
@@ -216,6 +164,26 @@
     }
 
     return fittingHeight;
+}
+
+- (NSMutableArray<CBDataSourceSection *> *)sections {
+    return objc_getAssociatedObject(self,_cmd);
+}
+
+- (void)setSections:(NSMutableArray<CBDataSourceSection *> *)sections {
+    objc_setAssociatedObject(self,@selector(sections),sections,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (NSMutableDictionary * )delegates {
+    return objc_getAssociatedObject(self,_cmd);
+}
+
+- (void)setDelegates:(NSMutableDictionary *)delegates {
+    objc_setAssociatedObject(self,@selector(delegates),delegates,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+
 }
 
 

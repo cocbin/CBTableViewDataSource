@@ -23,7 +23,7 @@
     if(self) {
         NSArray * controllersInfo = @[
                 @{@"title":@"First",@"image":@"ic_fire",@"selectImage":@"ic_fire",@"controller":[[FirstViewController alloc]init]},
-                @{@"title":@"Second",@"image":@"ic_coffee",@"selectImage":@"ic_coffee",@"controller":[[SecondViewController alloc]init]},
+                @{@"title":@"Second",@"image":@"ic_coffee",@"selectImage":@"ic_coffee",@"controller":[[SecondViewController alloc]init]}
         ];
 
         for (NSUInteger i = 0; i < controllersInfo.count; ++ i) {
