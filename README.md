@@ -1,11 +1,12 @@
 # CBTableViewDataSource
 ### An elegant way to write `DataSource` and `Delegate` for `UITableView`.
 
-#### If there is any mistake in this translation,please contact with me.
+#### If there is any mistake in this document, please contact with me.
  [中文文档 (Document in Chinese)](https://github.com/cocbin/CBTableViewDataSource/blob/master/README_ZH.md)
+ 
 ### Introduction
 
-Recently，I am tring to restruct my code，and find out that every viewController includes a long gross code to define `dataSource` and `delegate`.As a result，I create CBTableViewDataSource when I was thinking how to write `dataSource` in an elegant way.
+Recently,I am trying to restruct my code,and found out that every viewController includes some long gross code to define `dataSource` and `delegate`. As a result,I create CBTableViewDataSource when I was thinking how to rewrite `dataSource` in an elegant way.
 
 
 **Without using CBTableViewDataSource**
@@ -100,7 +101,7 @@ CBTableViewDataSource * dataSource = CBDataSource(self.tableView)
      .make();
 
 ```
-CBTableViewDataSource allows us to define `dataSouce` in functional programming，logical sequences and pages are order consistent.Each section starts with `section()`,behind `section()`,can make some configures to section。But must set up cell,data,adapter for each section.`cell` is the cell class which section is using,`data` is the data of section,and `adapter` binds your data with the cell.At the same time,it will set the cell height of the section,or use an auto height calculation.What's more,you can also set the title,or the touch event of the cell and so on.
+CBTableViewDataSource allows us to define `dataSouce` in a functional programming way，logical sequences and pages are order consistent.Each section starts with `section()`,behind `section()`,can make some configures to the section.But we must to set up cell,data,adapter for each section.`cell` is the cell class which section is using,`data` is the data of the section,and `adapter` binds your data with the cell.At the same time,it will set the cell height of the section,or to use an height auto calculation.What's more,you can also set the title,or the touch event of the cell and so on.
 
 CBTableViewDataSource mainly solves servel problems：
 
@@ -109,13 +110,13 @@ CBTableViewDataSource mainly solves servel problems：
 3.An elegent API for dataSource development.
 
 ### DEMO
-DEMO includes two pages，**First** Show multiple complex section usages in a page.The APP modeled a famous APP in China,mainly showed that the advantage of the framework when use to develop dataSource.
+DEMO includes two pages，**First** Show multiple complex section usages in a page.The APP modeled a famous APP in China,mainly showed that the advantage of the framework when it was used to develop dataSource.
 
 
 ![IMG_0220](media/14650905664965/IMG_0220.png)![IMG_0221](media/14650905664965/IMG_0221.png)
 
 
-**second** This page use a Feed page to show the usage of autoHeight.Just need to use function `autoHeight` and the calculation of the height of the cell will be solve.
+**second** This page use a Feed page to show the usage of autoHeight.Just need to use function `autoHeight` and the calculation of the height of the cell will be solved.
 
 ![IMG_0222](media/14650905664965/IMG_0222.png)
 
@@ -167,7 +168,7 @@ _dataSource = CBDataSource(self.tableView).section()
       .make()
 ```
 
-**！！！ Waring！！！**
+**！！！ Warning！！！**
 Do not reassign dataSource directly.
 
 ``` objective-c
@@ -179,17 +180,17 @@ self.tableView.dataSource = CBDataSource(self.tableView)
     .adapter(...)
     .make()
 ```
-Because dataSource in UITableView is a weak typing,it will be freed without any strong reference after assigned。
+Because dataSource in UITableView is a weak-typing,it will be freed without any strong reference after assigned.
 
 ### API
 
 #### CBDataSource(UITableView * tableView)
-Build a `CBDataSourceMaker` object，use it  to create `CBTableViewDataSource`,assign a `tableView` object which need to be binded with `dataSource`.
+Build a `CBDataSourceMaker` object，use it to create `CBTableViewDataSource`,assign a `tableView` object which is needed to be binded with `dataSource`.
 
 #### section()
-Use to spilt serveral sections，section() is needed to assigned in the beginning of every section.
+Use to spilt sections，section() is needed to assign in the beginning of every section.
 #### cell(Class cell)
-Give a class of cell,suck as `[UITableViewCell class]`.The current section will all use this cell.And you need to know that the framework will regists and binds identifier so the cell needed not to registes.
+Give a class of cell,such as `[UITableViewCell class]`.All current sections willuse the same cell. And you need to know that the framework will regists and binds identifier so the cell needed not to be registed.
 
 #### data(NSArray * data)
 Give an array with the data which will be showed in the page.
@@ -208,11 +209,11 @@ adapter(^(GoodsCell * cell,GoodsModel * goods,NSUInterger index){
 ```
 
 #### headerView(UIView*(`^`)())
-Set tableHeaderView.The parament requests a Block，the block should contains an UIView。
+Set tableHeaderView.The parament requests a block which should contains an UIView。
 
 #### footerView(UIView*(`^`)())
-set tableFooterView.The parament is a Block,the block requests a UIView.
-The extra lines will be removed in tableView when the page is empty.
+set tableFooterView.The parament requests a block which requests an UIView.
+The extra underlines will be removed in tableView when the content of the page is empty.
 Example：
 
 ``` objective-c
@@ -223,28 +224,28 @@ footerView(^(){
 ```
 
 #### height(CGFloat * height)
-Set a fixed height for each section separately.
+Set a fixed height for each section respectively.
 **Two special examples：**
 - This function will be unavailable after using autoHeight.
-- The height is public for all section if set it before all sections.
+- The height is public for all sections if set it before all sections.
 
 
 #### autoHeight()
-In order to calculate the height of the cell automatically,for the situation which the heights of cells are unfixed.
+This function is to calculate the height of the cell automatically, for the situation which the heights of cells are unfixed.
 **Warning：**
 
-- If the the height of cell is fixed,please do not user autoHeight.Any dispensable calculation of autoHeight will reduce the performence.Even through that framework has been designed with a perfect cache model,we'd better make good use of any performence.
+- If the height of the cell is fixed,please do not use autoHeight.Any dispensable calculation of autoHeight will reduce the performence.Even through framework has been designed with a perfect cache model,we'd better make good use of any performence.
 - This function only available to **autolayout**.
 
 ** Must set up right constrains：**
 
-- All cells must be put into cell.contentView,else will be calculated wrongly
+- All cells must be put into cell.contentView, else will be calculated wrongly
 - SET UP RIGHT COMPLETE CONSTRAINS!!!
 
 **Make sure that a constrain should inclues two principles.**
 
-1.Any independent widget inside the cell should has a certain positon and a certain size。Such as the upper left corner is fixed on the upper left corner of the cell,set size with height and width，or set lower right corner to calculate the size when the positions of widgets are able to assign.
-What' more,the widget includes UILabel and UIImageView,just need to assign the size of one direction,another direction will be calculate automatically.For example, knows the width and the content of label, the height is calculatable.
+1.Any independent widget inside the cell should have a certain positon and a certain size.Such as the upper left corner is fixed on the upper left corner of the cell, set height and width，or set lower right corner to calculate the size when the positions of widgets are able to assign.
+What' more,the widget includes UILabel and UIImageView,just need to assign the size of one direction,another direction will be calculate automatically.For example, knows the width and the content of label, the height will be calculatable.
 
 
  2.To the cell itself,the size must be assigned.Size can be calculated by restricting its upper and lower,right and left widgets,these widgets with content should be definited positions and sizes.It is worth mentioning that it is easy to loss the restrain of the bottom.Because no exception will be raised even the cell lose a restrain of the bottom.The necessary conditions for the calculation of the height of the cell are not satisfied.
@@ -254,11 +255,12 @@ What' more,the widget includes UILabel and UIImageView,just need to assign the s
 
 
 #### event(`^`(NSUInteger index,id data))
-Parament requests a Block，which used to set up the click event of the cell,and 'index' is the index touch positon of the current section,'data' is the data of current click position.
+Parament requests a block，which used to set up the click event of the cell,and 'index' is the index touch positon of the current section,'data' is the data of current click position.
 
 #### title(NSString* title)
-Set title for each section.
+Set titles for each section.
 
 #### make()
-Run after finished setup.
+Run after finished the setup.
+
 
