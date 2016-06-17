@@ -22,3 +22,7 @@ typedef void (^EventBlock)(NSUInteger index,id data);
 @property(nonatomic, strong) NSMutableArray<CBDataSourceSection * > * sections;
 
 @end
+
+@interface CBSampleTableViewDataSource: CBBaseTableViewDataSource
+
+@end

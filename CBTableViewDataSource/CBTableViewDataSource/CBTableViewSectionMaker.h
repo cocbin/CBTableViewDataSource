@@ -26,6 +26,9 @@
 - (CBTableViewSectionMaker * (^)(NSString *))headerTitle;
 - (CBTableViewSectionMaker * (^)(NSString *))footerTitle;
 
+- (CBTableViewSectionMaker * (^)(UIView * (^)()))headerView;
+- (CBTableViewSectionMaker * (^)(UIView * (^)()))footerView;
+
 @property(nonatomic, strong) CBDataSourceSection * section;
 
 @end

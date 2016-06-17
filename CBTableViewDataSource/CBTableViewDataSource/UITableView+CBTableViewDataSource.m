@@ -4,9 +4,12 @@
 //
 
 #import <objc/runtime.h>
+#import <objc/message.h>
 #import "UITableView+CBTableViewDataSource.h"
 #import "CBBaseTableViewDataSource.h"
 #import "CBTableViewDataSourceMaker.h"
+#import "CBTableViewSectionMaker.h"
+#import "CBDataSourceSection.h"
 
 static NSString * getIdentifier (){
     CFUUIDRef uuidRef = CFUUIDCreate(NULL);
@@ -44,6 +47,10 @@ static NSString * getIdentifier (){
         }
     }
 
+    if(!self.tableFooterView) {
+        self.tableFooterView = [UIView new];
+    }
+
     id<CBBaseTableViewDataSourceProtocol> ds = (id<CBBaseTableViewDataSourceProtocol>) [DataSourceClass  new];
     ds.sections = make.sections;
     ds.delegates = delegates;
@@ -51,6 +58,56 @@ static NSString * getIdentifier (){
     self.dataSource = ds;
     self.delegate = ds;
 }
+
+- (void)cb_makeSectionWithData:(NSArray *)data {
+
+    NSMutableDictionary * delegates = [[NSMutableDictionary alloc] init];
+    CBTableViewSectionMaker * make = [CBTableViewSectionMaker new];
+    make.data(data);
+    make.cell([UITableViewCell class]);
+    [self registerClass:make.section.cell forCellReuseIdentifier:make.section.identifier];
+
+    make.section.tableViewCellStyle = UITableViewCellStyleDefault;
+    for(NSUInteger i = 0;i<data.count;i++) {
+        if(data[i][@"detail"]) {
+            make.section.tableViewCellStyle = UITableViewCellStyleSubtitle;
+            break;
+        }
+        if(data[i][@"value"]) {
+            make.section.tableViewCellStyle = UITableViewCellStyleValue1;
+            break;
+        }
+    }
+    id<CBBaseTableViewDataSourceProtocol> ds = (id<CBBaseTableViewDataSourceProtocol>) [CBSampleTableViewDataSource  new];
+
+    if(!self.tableFooterView) {
+        self.tableFooterView = [UIView new];
+    }
+
+    ds.sections = [@[make.section] mutableCopy];
+    ds.delegates = delegates;
+    self.cbTableViewDataSource = ds;
+    self.dataSource = ds;
+    self.delegate = ds;
+}
+
+- (void)cb_makeSectionWithData:(NSArray *)data withCellClass:(Class)cellClass {
+    [self cb_makeDataSource:^(CBTableViewDataSourceMaker * make) {
+        [make makeSection:^(CBTableViewSectionMaker * section) {
+            section.data(data);
+            section.cell(cellClass);
+            section.adapter(^(id cell,NSDictionary * row,NSUInteger index) {
+                if([cell respondsToSelector:NSSelectorFromString(@"configure:")]) {
+                    objc_msgSend(cell,NSSelectorFromString(@"configure:"),row);
+                } else if([cell respondsToSelector:NSSelectorFromString(@"configure:index:")]) {
+                    objc_msgSend(cell,NSSelectorFromString(@"configure:index:"),row,index);
+                }
+            });
+            section.autoHeight();
+        }];
+    }];
+}
+
 
 @end
 

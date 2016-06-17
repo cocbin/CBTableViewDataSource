@@ -42,6 +42,36 @@
     return self.sections[(NSUInteger) section].footerTitle;
 }
 
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    return self.sections[(NSUInteger) section].headerView;
+}
+
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return self.sections[(NSUInteger) section].footerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if(self.sections[(NSUInteger) section].headerView) {
+        return self.sections[(NSUInteger) section].headerView.frame.size.height;
+    } else if(self.sections[(NSUInteger) section].headerTitle) {
+        return 40;
+    } else {
+        return 0;
+    };
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    if(self.sections[(NSUInteger) section].footerView) {
+        return self.sections[(NSUInteger) section].footerView.frame.size.height;
+    } else if(self.sections[(NSUInteger) section].footerTitle) {
+        return 40;
+    } else {
+        return 0;
+    };
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSUInteger section = (NSUInteger) indexPath.section;
     NSUInteger index = (NSUInteger) indexPath.row;
@@ -182,9 +212,37 @@
     objc_setAssociatedObject(self,@selector(delegates),delegates,OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+@end
 
+@implementation CBSampleTableViewDataSource
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSUInteger section = (NSUInteger) indexPath.section;
+    NSUInteger index = (NSUInteger) indexPath.row;
+
+
+    UITableViewCell *cell= [tableView dequeueReusableCellWithIdentifier:self.sections[section].identifier];
+    if(cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:self.sections[section].tableViewCellStyle reuseIdentifier:self.sections[section].identifier];
+    }
+
+    NSDictionary * row = self.sections[section].data[index];
+    cell.textLabel.text = row[@"text"];
+    if(row[@"detail"]) {
+        cell.detailTextLabel.text = row[@"detail"];
+    }
+    if(row[@"value"]) {
+        cell.detailTextLabel.text = row[@"value"];
+    }
+    if(row[@"image"]) {
+        [cell.imageView setImage:[UIImage imageNamed:row[@"image"]]];
+    }
+    if(row[@"accessoryType"]) {
+        cell.accessoryType = (UITableViewCellAccessoryType) [row[@"accessoryType"] integerValue];
+    }
+
+
+    return cell;
 }
-
 
 @end

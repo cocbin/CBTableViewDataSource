@@ -87,5 +87,18 @@
     return retStr;
 }
 
+- (CBTableViewSectionMaker * (^)(UIView * (^)()))headerView {
+    return ^CBTableViewSectionMaker *(UIView * (^view)()) {
+        self.section.headerView = view();
+        return self;
+    };
+}
+
+- (CBTableViewSectionMaker * (^)(UIView * (^)()))footerView {
+    return ^CBTableViewSectionMaker *(UIView * (^view)()) {
+        self.section.footerView = view();
+        return self;
+    };
+}
 
 @end

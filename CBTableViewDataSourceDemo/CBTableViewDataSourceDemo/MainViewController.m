@@ -11,6 +11,8 @@
 #import "FirstViewController.h"
 #import "BaseNavigationViewController.h"
 #import "SecondViewController.h"
+#import "JustDataViewController.h"
+#import "CustomCellViewController.h"
 
 @interface MainViewController ()
 
@@ -22,8 +24,10 @@
     self = [super init];
     if(self) {
         NSArray * controllersInfo = @[
-                @{@"title":@"First",@"image":@"ic_fire",@"selectImage":@"ic_fire",@"controller":[[FirstViewController alloc]init]},
-                @{@"title":@"Second",@"image":@"ic_coffee",@"selectImage":@"ic_coffee",@"controller":[[SecondViewController alloc]init]}
+                @{@"title":@"One Line",@"image":@"ic_demo1",@"selectImage":@"ic_demo1",@"controller":[[CustomCellViewController alloc]init]},
+                @{@"title":@"One Line",@"image":@"ic_demo2",@"selectImage":@"ic_demo2",@"controller":[[JustDataViewController alloc]init]},
+                @{@"title":@"First",@"image":@"ic_demo3",@"selectImage":@"ic_demo3",@"controller":[[FirstViewController alloc]init]},
+                @{@"title":@"Second",@"image":@"ic_demo4",@"selectImage":@"ic_demo4",@"controller":[[SecondViewController alloc]init]}
         ];
 
         for (NSUInteger i = 0; i < controllersInfo.count; ++ i) {
