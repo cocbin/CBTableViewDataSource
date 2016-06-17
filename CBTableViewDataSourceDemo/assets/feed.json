@@ -1,47 +1,47 @@
 [
     {
-        "user":"程序员的那些事",
-        "avatar":"avatar1.jpg",
-        "content":"@Python开发者: 5月更多Python热文推荐： 《Python自然语言处理入门》《Python多线程详解》《简单 12 步理解 Python 装饰器》 《零基础 20 分钟搭建 SAE 微信个人号后台》",
+        "user":"为君十饮孟婆汤",
+        "avatar":"avatar_01.jpg",
+        "content":"如果有人问我为什么爱你，我觉得我只能如此回答：“因为是你，因为是我。”",
         "date":"今天 18:45"
     },{
-        "user":"美女校花大厅",
-        "avatar":"avatar3.jpg",
+        "user":"美女校花",
+        "avatar":"avatar_03.jpg",
         "content":"时间会告诉我们，简单的喜欢，最长远；平凡中的陪伴，最心安；懂你的人，最温暖。",
         "image":"image1.jpg",
         "date":"昨天 18:45"
     },{
-        "user":"JAVA大本营",
-        "avatar":"avatar4.jpg",
-        "content":"Android Handler Looper Message  详细分析",
+        "user":"汝瓷赋",
+        "avatar":"avatar_04.jpg",
+        "content":"汝窑地新瓷插着西京二月地梅花，汴梁的月就着西湖的新茶一饮而尽，是什么在水边溯回？是那前朝的风华雪事还是因为汝窑新出地那弯银月？",
         "image":"image2.jpg",
         "date":"前天 18:45"
     },{
-        "user":"JAVA大本营",
-        "avatar":"avatar4.jpg",
-        "content":"我是一名聋哑的程序员",
+        "user":"六月沧桑",
+        "avatar":"avatar_04.jpg",
+        "content":"世间多少沧桑，都因你那份热情尽遗憾，心留住片刻的感觉，在你身边曾无尽的搜索，犹像那灯蛾，盲目往火里扑，灿烂一瞬间，已没法可梦中醒觉",
         "image":"image4.jpg",
         "date":"6月3日 18:45"
     },{
-        "user":"程序员俱乐部",
-        "avatar":"avatar5.jpg",
-        "content":"为什么JavaScript开发如此疯狂",
+        "user":"莅住时光",
+        "avatar":"avatar_05.jpg",
+        "content":"我在时光里莅住，期待，在每一个风轻云淡的日子里，可以写出锦瑟生香的暖字；依着阳光安暖，悄然长成一朵潋滟的花；等，春天的情话落在时光的蒹葭，你眼中那寂静的妥帖，便是我在花间筑下的梦。",
         "image":"image3.jpg",
         "date":"一个月前"
     },{
-        "user":"IT技术博客大学习",
-        "avatar":"avatar2.jpg",
-        "content":"【Java跨语言调用实现方案在大型分布式 java 应用中，为了方便开发者，通常底层的 rpc 框架都会做一些调用的封装，让应用层开发人员在开发服务的时候只用编写简单的 pojo 对象就可以了，如流行的 spring rem...",
+        "user":"月落无声",
+        "avatar":"avatar_06.jpg",
+        "content":"人，是个奇怪的动物。天天粘着你的，你不稀罕；不喜欢你，想尽办法去打听人家，去讨好人家，你们说奇怪不奇怪。",
         "date":"一年前"
     },{
-        "user":"美女校花大厅",
-        "avatar":"avatar3.jpg",
-        "content":"第一年，小姨子说：“姐夫，你的iPad挺好的！”她姐把iPad送给她了。第二年：“姐夫，你的IBM笔记本挺好的！”她姐把IBM笔记本送给她了。第三年：“姐夫，你人挺不错的！”...我在等她姐发话。‍‍‍‍",
+        "user":"亲爱的，初恋",
+        "avatar":"avatar_07.jpg",
+        "content":"　那时我那么的年轻，那么的相信爱情。我以为你会是我的全世界，会是我的一生一世，我甚至从来也没有想过分离。‍‍‍‍",
         "image":"image5.jpg",
         "date":"2010年6月3日 18:45"
     },{
         "user":"美女校花大厅",
-        "avatar":"avatar3.jpg",
+        "avatar":"avatar_08.jpg",
         "content":"任何时候都可以开始做自己想做的事，希望你不要用年龄和其他东西来束缚自己。年龄从来不是界限，除非你自己拿来为难自己。",
         "image":"image6.jpg",
         "date":"2010年5月2日 18:45"

@@ -14,6 +14,6 @@
 
 @property(nonatomic, strong) UIView * circleView;
 
--(void)configure:(NSDictionary * )row index:(NSUInteger)index;
+-(void)configure:(NSDictionary * )row index:(NSNumber * )index;
 
 @end

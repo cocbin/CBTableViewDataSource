@@ -5,9 +5,9 @@
 
 #import <UIKit/UIKit.h>
 
-@class CustomCellViewModel;
+@class DemoOneViewModel;
 
-@interface CustomCellViewController : UIViewController
-@property(nonatomic, strong) CustomCellViewModel * viewModel;
+@interface DemoOneViewController : UIViewController
+@property(nonatomic, strong) DemoOneViewModel * viewModel;
 @property(nonatomic, strong) UITableView * tableView;
 @end

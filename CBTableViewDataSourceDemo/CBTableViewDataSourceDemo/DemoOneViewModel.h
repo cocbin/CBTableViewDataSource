@@ -6,7 +6,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface CustomCellViewModel : NSObject
+@interface DemoOneViewModel : NSObject
 
 @property(nonatomic, strong) NSMutableArray * data;
 @end

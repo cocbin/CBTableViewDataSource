@@ -3,9 +3,9 @@
 // Copyright (c) 2016 Cocbin. All rights reserved.
 //
 
-#import "SecondViewModel.h"
+#import "DemoFourViewModel.h"
 
-@implementation SecondViewModel
+@implementation DemoFourViewModel
 
 - (instancetype)init {
     self = [super init];

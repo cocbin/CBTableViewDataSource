@@ -6,7 +6,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface SecondViewModel : NSObject
+@interface DemoFourViewModel : NSObject
 
 @property(nonatomic, retain) NSMutableArray * feed;
 @property (nonatomic, copy) void(^dataUpdate)();

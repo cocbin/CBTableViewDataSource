@@ -4,19 +4,19 @@
 //
 
 //#import <CBTableViewDataSource/CBTableViewDataSource.h>
-#import "SecondViewController.h"
-#import "SecondViewModel.h"
+#import "DemoFourViewController.h"
+#import "DemoFourViewModel.h"
 #import "FeedCell.h"
 #import "UINavigationBar+Awesome.h"
 #import <CBTableViewDataSource/CBTableViewDataSource.h>
 
-@implementation SecondViewController
+@implementation DemoFourViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [self.navigationController.navigationBar lt_setBackgroundColor: [UIColor colorWithRed:0.00 green:0.57 blue:0.90 alpha:1.00]];
+    [self.navigationController.navigationBar lt_setBackgroundColor: [UIColor colorWithRed:0.27 green:0.75 blue:0.78 alpha:1.00]];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 
     __weak typeof(self) weakSelf = self;
@@ -31,6 +31,7 @@
 - (UITableView *)tableView {
     if(!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self.view addSubview:_tableView];
         [_tableView cb_makeDataSource:^(CBTableViewDataSourceMaker * make) {
             [make makeSection:^(CBTableViewSectionMaker *section) {
@@ -50,9 +51,9 @@
     return _tableView;
 }
 
-- (SecondViewModel *)viewModel {
+- (DemoFourViewModel *)viewModel {
     if(!_viewModel) {
-        _viewModel = [[SecondViewModel alloc] init];
+        _viewModel = [[DemoFourViewModel alloc] init];
     }
     return _viewModel;
 }

@@ -85,7 +85,7 @@
     return _circleView;
 }
 
-- (void)configure:(NSDictionary *)row index:(NSUInteger)index {
+- (void)configure:(NSDictionary *)row index:(NSNumber * )index {
     if (row[@"avatar"]) {
         [self.avatarView setImage:[UIImage imageNamed:row[@"avatar"]]];
     } else {
@@ -94,18 +94,13 @@
     [self.nameLabel setText:row[@"name"]];
     [self.titleLabel setText:row[@"title"]];
     [self.detailLabel setText:row[@"detail"]];
-    if (row[@"unread"]) {
-        self.circleView.hidden = NO;
-    } else {
-        self.circleView.hidden = YES;
-    }
+    self.circleView.hidden = row[@"unread"] == nil;
 
-    if(index&1) {
+    if([index intValue] &1) {
         self.contentView.backgroundColor = [UIColor colorWithRed:0.95 green:0.96 blue:0.96 alpha:1.00];
     } else {
         self.contentView.backgroundColor = [UIColor whiteColor];
     }
-
 }
 
 @end

@@ -108,78 +108,45 @@
            "image":"activity4.jpg"
         }],
         "hot_goods":[{
-            "name":"日本进口森永BAKE烘培巧克力38g（代可可脂）",
-            "price":"12.80",
-            "image":"goods1.jpg"
+            "name":"筱姿 晓梦2016夏季新款复古女装绣花收腰系带及膝连衣裙 复古中裙",
+            "price":"446.00",
+            "image":"goods1.jpg",
+            "info":"支持翻倍,满299抵40,可跨店"
         },{
-            "name":"福临门 香粘米 5kg袋  纤盈精巧 色泽柔润 中粮出品",
-            "price":"31",
-            "image":"goods2.png"
+            "name":"筱姿 水凝烟 2016夏季新款女装复古印花修身气质半身裙长裙",
+            "price":"248.00",
+            "image":"goods2.jpg",
+            "info":"支持翻倍,满299抵40,可跨店"
         },{
-            "name":"德芙士力架全家桶巧克力460g桶装 休闲零食 生日",
-            "price":"28.9",
-            "image":"goods3.jpg"
+            "name":"筱姿西石桥上 2016夏季新款复古女装V领绣花修身 汉服连衣裙中裙",
+            "price":"386.00",
+            "image":"goods3.jpg",
+            "info":"支持翻倍,满299抵40,可跨店"
         },{
-            "name":"箭牌糖果益达木糖醇清爽草莓味40粒口香糖56g零",
-            "price":"21.2",
-            "image":"goods4.jpg"
+            "name":"筱姿亭亭烟 2016新款夏季复古女装小立领修身绣花连衣裙长裙旗袍",
+            "price":"526.00",
+            "image":"goods4.jpg",
+            "info":"支持翻倍,满299抵40,可跨店"
         },{
-            "name":"德国进口Woogie水果糖柠檬味200g罐清新柠檬",
-            "price":"14.5",
-            "image":"goods5.jpg"
+            "name":"筱姿亭亭烟 2016新款夏季复古女装小立领修身绣花连衣裙长裙旗袍",
+            "price":"526.00",
+            "image":"goods5.jpg",
+            "info":"支持翻倍,满299抵40,可跨店"
         },{
-            "name":"阿尔卑斯 草莓牛奶硬糖150g袋 甜蜜美味滋味",
-            "price":"8.5",
-            "image":"goods6.jpg"
+            "name":"筱姿一梦云烟 2016夏季新款复古女装一字领绣花修身连衣裙蓬蓬裙",
+            "price":"508.00",
+            "image":"goods6.jpg",
+            "info":"支持翻倍,满299抵40,可跨店"
         },{
-            "name":"亿滋 怡口莲榛仁巧克力太妃糖90g休闲零食 糖果",
-            "price":"9.89",
-            "image":"goods7.jpg"
+            "name":"筱姿影依依2016夏季新款 复古高腰百搭显瘦蕾丝阔腿裤长裤子",
+            "price":"246.00",
+            "image":"goods7.jpg",
+            "info":"支持翻倍,满299抵40,可跨店"
         },{
-            "name":"客嘟麦清凉奶糖16g支经典怀旧休闲零食薄荷糖",
-            "price":"1.0",
-            "image":"goods8.jpg"
-        }],
-        "rand_goods":[{
-            "name":"德国进口Woogie水果糖柠檬味200g罐清新柠檬",
-            "price":"14.5",
-            "image":"goods5.jpg"
-        },{
-            "name":"阿尔卑斯 草莓牛奶硬糖150g袋 甜蜜美味滋味",
-            "price":"8.5",
-            "image":"goods6.jpg"
-        },{
-            "name":"亿滋 怡口莲榛仁巧克力太妃糖90g休闲零食 糖果",
-            "price":"9.89",
-            "image":"goods7.jpg"
-        },{
-            "name":"客嘟麦清凉奶糖16g支经典怀旧休闲零食薄荷糖",
-            "price":"1.0",
-            "image":"goods8.jpg"
-        },{
-            "name":"日本进口森永BAKE烘培巧克力38g（代可可脂）",
-            "price":"12.80",
-            "image":"goods1.jpg"
-        },{
-            "name":"福临门 香粘米 5kg袋  纤盈精巧 色泽柔润 中粮出品",
-            "price":"31",
-            "image":"goods2.png"
-        },{
-            "name":"德芙士力架全家桶巧克力460g桶装 休闲零食 生日",
-            "price":"28.9",
-            "image":"goods3.jpg"
-        },{
-            "name":"箭牌糖果益达木糖醇清爽草莓味40粒口香糖56g零",
-            "price":"21.2",
-            "image":"goods4.jpg"
-        },{
-            "name":"德国进口Woogie水果糖柠檬味200g罐清新柠檬",
-            "price":"14.5",
-            "image":"goods5.jpg"
-        },{
-            "name":"阿尔卑斯 草莓牛奶硬糖150g袋 甜蜜美味滋味",
-            "price":"8.5",
-            "image":"goods6.jpg"
+            "name":"筱姿微光 2016新款春夏女装 复古蕾丝长裙绣花淑女显瘦连衣裙",
+            "price":"469.00",
+            "image":"goods8.jpg",
+            "info":"支持翻倍,满299抵40,可跨店"
         }]
     }
 }

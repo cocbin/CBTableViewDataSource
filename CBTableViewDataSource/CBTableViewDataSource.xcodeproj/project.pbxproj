@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		789F644ED2D74B36E4034D24 /* CBDataSourceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 789F689D6B2D855567C41F17 /* CBDataSourceHelper.m */; };
 		789F65D04C9F11CFE4B34891 /* CBTableViewSectionMaker.h in Headers */ = {isa = PBXBuildFile; fileRef = 789F664F298D01AD53466489 /* CBTableViewSectionMaker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		789F65DF4332066DCFAAC8A7 /* CBTableViewSectionMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 789F6293E22211F4336A8A47 /* CBTableViewSectionMaker.m */; };
 		789F661ECBBC97C60A47ABD1 /* UITableView+CBTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 789F6AD2EE2A68A789153E71 /* UITableView+CBTableViewDataSource.m */; };
@@ -18,7 +17,6 @@
 		789F6B767BAB50AB8049788A /* CBBaseTableViewDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 789F6058D8CD4856402AEA3A /* CBBaseTableViewDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		789F6CB65C0209AAB487771E /* CBDataSourceSection.h in Headers */ = {isa = PBXBuildFile; fileRef = 789F6D1E2C007786528F2B68 /* CBDataSourceSection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		789F6E50E95332305E03E543 /* CBTableViewDataSourceMaker.h in Headers */ = {isa = PBXBuildFile; fileRef = 789F60B901F533FD7DF343EF /* CBTableViewDataSourceMaker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		789F6FAEBB225E7AC34FA51B /* CBDataSourceHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 789F6B103809BA94DD1E8A9D /* CBDataSourceHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D19DD0731D02EFF400774243 /* CBTableViewDataSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D19DD0681D02EFF400774243 /* CBTableViewDataSource.framework */; };
 		D19DD0781D02EFF400774243 /* CBTableViewDataSourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D19DD0771D02EFF400774243 /* CBTableViewDataSourceTests.m */; };
 		D19DD08D1D02F72400774243 /* CBTableViewDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = D19DD0891D02F72400774243 /* CBTableViewDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -41,11 +39,9 @@
 		789F6230B158C21053BCA29D /* CBDataSourceSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBDataSourceSection.m; sourceTree = "<group>"; };
 		789F6293E22211F4336A8A47 /* CBTableViewSectionMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBTableViewSectionMaker.m; sourceTree = "<group>"; };
 		789F664F298D01AD53466489 /* CBTableViewSectionMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBTableViewSectionMaker.h; sourceTree = "<group>"; };
-		789F689D6B2D855567C41F17 /* CBDataSourceHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBDataSourceHelper.m; sourceTree = "<group>"; };
 		789F696CC5490D5DE2E058C5 /* UITableView+CBTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+CBTableViewDataSource.h"; sourceTree = "<group>"; };
 		789F6AD2EE2A68A789153E71 /* UITableView+CBTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+CBTableViewDataSource.m"; sourceTree = "<group>"; };
 		789F6AEC55B7021491FF3778 /* CBTableViewDataSourceMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBTableViewDataSourceMaker.m; sourceTree = "<group>"; };
-		789F6B103809BA94DD1E8A9D /* CBDataSourceHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBDataSourceHelper.h; sourceTree = "<group>"; };
 		789F6D1E2C007786528F2B68 /* CBDataSourceSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBDataSourceSection.h; sourceTree = "<group>"; };
 		D19DD0681D02EFF400774243 /* CBTableViewDataSource.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CBTableViewDataSource.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D19DD06D1D02EFF400774243 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -97,8 +93,6 @@
 			children = (
 				D19DD0891D02F72400774243 /* CBTableViewDataSource.h */,
 				D19DD06D1D02EFF400774243 /* Info.plist */,
-				789F689D6B2D855567C41F17 /* CBDataSourceHelper.m */,
-				789F6B103809BA94DD1E8A9D /* CBDataSourceHelper.h */,
 				789F6230B158C21053BCA29D /* CBDataSourceSection.m */,
 				789F6D1E2C007786528F2B68 /* CBDataSourceSection.h */,
 				789F620A6A6C764E178377C3 /* CBBaseTableViewDataSource.m */,
@@ -131,7 +125,6 @@
 			files = (
 				789F6B767BAB50AB8049788A /* CBBaseTableViewDataSource.h in Headers */,
 				D19DD08D1D02F72400774243 /* CBTableViewDataSource.h in Headers */,
-				789F6FAEBB225E7AC34FA51B /* CBDataSourceHelper.h in Headers */,
 				789F6CB65C0209AAB487771E /* CBDataSourceSection.h in Headers */,
 				789F6E50E95332305E03E543 /* CBTableViewDataSourceMaker.h in Headers */,
 				789F65D04C9F11CFE4B34891 /* CBTableViewSectionMaker.h in Headers */,
@@ -235,7 +228,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				789F644ED2D74B36E4034D24 /* CBDataSourceHelper.m in Sources */,
 				789F689C02236F552382D571 /* CBDataSourceSection.m in Sources */,
 				789F67763827DB9F0FF1D62E /* CBBaseTableViewDataSource.m in Sources */,
 				789F6653A588C41A0A4B4391 /* CBTableViewDataSourceMaker.m in Sources */,
@@ -360,7 +352,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				INFOPLIST_FILE = CBTableViewDataSource/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -377,7 +369,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				INFOPLIST_FILE = CBTableViewDataSource/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

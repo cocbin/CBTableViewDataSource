@@ -3,10 +3,10 @@
 // Copyright (c) 2016 Cocbin. All rights reserved.
 //
 
-#import "CustomCellViewModel.h"
+#import "DemoOneViewModel.h"
 
 
-@implementation CustomCellViewModel
+@implementation DemoOneViewModel
 
 - (NSMutableArray *)data {
     if(!_data) {

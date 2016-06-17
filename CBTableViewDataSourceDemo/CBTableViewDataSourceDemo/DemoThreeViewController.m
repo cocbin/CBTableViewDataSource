@@ -1,13 +1,13 @@
 //
-//  FirstViewController.m
+//  DemoThreeViewController.m
 //  CBTableViewDataSourceDemo
 //
 //  Created by Cocbin on 16/6/4.
 //  Copyright © 2016年 Cocbin. All rights reserved.
 //
 
-#import "FirstViewController.h"
-#import "FirstViewModel.h"
+#import "DemoThreeViewController.h"
+#import "DemoThreeViewModel.h"
 #import "CycleScrollViewCell.h"
 #import "HomeCategoryCell.h"
 #import "HomeActivityCell.h"
@@ -15,11 +15,11 @@
 #import "UINavigationBar+Awesome.h"
 #import <CBTableViewDataSource/CBTableViewDataSource.h>
 
-@interface FirstViewController ()
+@interface DemoThreeViewController ()
 
 @end
 
-@implementation FirstViewController
+@implementation DemoThreeViewController
 
 void(^didScroll)(UIScrollView * scrollView);
 
@@ -27,7 +27,7 @@ void(^didScroll)(UIScrollView * scrollView);
     [super viewDidLoad];
 
     didScroll = ^(UIScrollView * scrollView) {
-            UIColor * color = [UIColor colorWithRed:0.00 green:0.57 blue:0.90 alpha:1.00];
+            UIColor * color = [UIColor colorWithRed:0.27 green:0.75 blue:0.78 alpha:1.00];
             CGFloat offsetY = scrollView.contentOffset.y;
             if (offsetY > 50) {
                 CGFloat alpha = MIN(1, 1 - ((50 + 64 - offsetY) / 64));
@@ -60,9 +60,9 @@ void(^didScroll)(UIScrollView * scrollView);
     [self.navigationController.navigationBar lt_reset];
 }
 
-- (FirstViewModel *)viewModel {
+- (DemoThreeViewModel *)viewModel {
     if(!_viewModel) {
-        _viewModel = [[FirstViewModel alloc]init];
+        _viewModel = [[DemoThreeViewModel alloc]init];
     }
     return _viewModel;
 }
@@ -71,6 +71,7 @@ void(^didScroll)(UIScrollView * scrollView);
     if(!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
         _tableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self.view addSubview:_tableView];
 
         [_tableView cb_makeDataSource:^(CBTableViewDataSourceMaker * make) {
@@ -105,11 +106,17 @@ void(^didScroll)(UIScrollView * scrollView);
                     .cell([GoodsCell class])
                     .data(self.viewModel.hotGoods)
                     .adapter(^(GoodsCell * cell,NSDictionary * data,NSUInteger index){
+                        if(index&1) {
+                            cell.backgroundColor = [UIColor whiteColor];
+                        } else {
+                            cell.backgroundColor = [UIColor colorWithRed:0.95 green:0.96 blue:0.96 alpha:1.00];
+                        }
                         [cell.imgView setImage:[UIImage imageNamed:data[@"image"]]];
                         [cell.nameView setText:data[@"name"]];
-                        [cell.priceView setText:[NSString stringWithFormat:@"$%@",data[@"price"]]];
+                        [cell.priceView setText:[NSString stringWithFormat:@"￥%@",data[@"price"]]];
+                        [cell.infoView setText:data[@"info"]];
                     })
-                    .height(100);
+                    .height(160);
             }];
         }];
     }

@@ -5,12 +5,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class JustDataViewModel;
+@class DemoTwoViewModel;
 
 
-@interface JustDataViewController : UIViewController
+@interface DemoTwoViewController : UIViewController
 
 @property(nonatomic, strong) UITableView * tableView;
-@property(nonatomic, strong) JustDataViewModel * viewModel;
+@property(nonatomic, strong) DemoTwoViewModel * viewModel;
 
 @end

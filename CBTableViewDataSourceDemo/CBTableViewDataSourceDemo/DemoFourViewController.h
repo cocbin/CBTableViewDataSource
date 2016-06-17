@@ -6,12 +6,12 @@
 #import <UIKit/UIKit.h>
 
 @class CBTableViewDataSource;
-@class SecondViewModel;
+@class DemoFourViewModel;
 
 
-@interface SecondViewController : UIViewController
+@interface DemoFourViewController : UIViewController
 
-@property(nonatomic, retain) SecondViewModel * viewModel;
+@property(nonatomic, retain) DemoFourViewModel * viewModel;
 
 @property(nonatomic, retain) UITableView * tableView;
 @end

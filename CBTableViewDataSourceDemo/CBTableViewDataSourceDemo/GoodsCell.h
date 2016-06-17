@@ -11,5 +11,5 @@
 @property (nonatomic, retain) UIImageView * imgView;
 @property (nonatomic, retain) UILabel * nameView;
 @property (nonatomic, retain) UILabel * priceView;
-
+@property(nonatomic, strong) UILabel * infoView;
 @end

@@ -1,14 +1,14 @@
 //
-//  FirstViewModel.m
+//  DemoThreeViewModel.m
 //  CBTableViewDataSourceDemo
 //
 //  Created by Cocbin on 16/6/4.
 //  Copyright © 2016年 Cocbin. All rights reserved.
 //
 
-#import "FirstViewModel.h"
+#import "DemoThreeViewModel.h"
 
-@implementation FirstViewModel
+@implementation DemoThreeViewModel
 
 /**
  @property (nonatomic, retain) NSArray * activity;
@@ -23,7 +23,6 @@
         self.category = [NSMutableArray array];
         self.activity = [NSMutableArray array];
         self.hotGoods = [NSMutableArray array];
-        self.randGoods = [NSMutableArray array];
     }
     return self;
 }
@@ -38,7 +37,6 @@
     [self.category addObjectsFromArray: jsonObject[@"category"]];
     [self.activity addObjectsFromArray:jsonObject[@"activity"]];
     [self.hotGoods addObjectsFromArray:jsonObject[@"hot_goods"]];
-    [self.randGoods addObjectsFromArray: jsonObject[@"rand_goods"]];
 
     if(self.dataUpdate) {
         self.dataUpdate();

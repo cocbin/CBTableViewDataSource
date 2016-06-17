@@ -6,7 +6,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface JustDataViewModel : NSObject
+@interface DemoTwoViewModel : NSObject
 
 @property(nonatomic, strong) NSMutableArray * data;
 

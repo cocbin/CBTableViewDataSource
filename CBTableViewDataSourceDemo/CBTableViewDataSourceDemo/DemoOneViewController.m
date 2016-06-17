@@ -4,16 +4,21 @@
 //
 
 #import <CBTableViewDataSource/CBTableViewDataSource.h>
-#import "CustomCellViewController.h"
-#import "CustomCellViewModel.h"
+#import "DemoOneViewController.h"
+#import "DemoOneViewModel.h"
 #import "CustomCell.h"
+#import "UINavigationBar+Awesome.h"
 
 
-@implementation CustomCellViewController
+@implementation DemoOneViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self tableView];
+
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    [self.navigationController.navigationBar lt_setBackgroundColor: [UIColor colorWithRed:0.27 green:0.75 blue:0.78 alpha:1.00]];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 }
 
 
@@ -27,11 +32,16 @@
     return _tableView;
 }
 
-- (CustomCellViewModel *)viewModel {
+- (DemoOneViewModel *)viewModel {
     if(!_viewModel) {
-        _viewModel = [CustomCellViewModel new];
+        _viewModel = [DemoOneViewModel new];
     }
     return _viewModel;
+}
+
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 @end

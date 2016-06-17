@@ -3,10 +3,10 @@
 // Copyright (c) 2016 Cocbin. All rights reserved.
 //
 
-#import "JustDataViewModel.h"
+#import "DemoTwoViewModel.h"
 
 
-@implementation JustDataViewModel {
+@implementation DemoTwoViewModel {
 
 }
 

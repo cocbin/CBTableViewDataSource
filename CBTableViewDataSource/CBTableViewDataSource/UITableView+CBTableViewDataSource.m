@@ -4,7 +4,6 @@
 //
 
 #import <objc/runtime.h>
-#import <objc/message.h>
 #import "UITableView+CBTableViewDataSource.h"
 #import "CBBaseTableViewDataSource.h"
 #import "CBTableViewDataSourceMaker.h"
@@ -91,6 +90,8 @@ static NSString * getIdentifier (){
     self.delegate = ds;
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 - (void)cb_makeSectionWithData:(NSArray *)data withCellClass:(Class)cellClass {
     [self cb_makeDataSource:^(CBTableViewDataSourceMaker * make) {
         [make makeSection:^(CBTableViewSectionMaker * section) {
@@ -98,15 +99,16 @@ static NSString * getIdentifier (){
             section.cell(cellClass);
             section.adapter(^(id cell,NSDictionary * row,NSUInteger index) {
                 if([cell respondsToSelector:NSSelectorFromString(@"configure:")]) {
-                    objc_msgSend(cell,NSSelectorFromString(@"configure:"),row);
+                    [cell performSelector:NSSelectorFromString(@"configure:") withObject:row];
                 } else if([cell respondsToSelector:NSSelectorFromString(@"configure:index:")]) {
-                    objc_msgSend(cell,NSSelectorFromString(@"configure:index:"),row,index);
+                    [cell performSelector:NSSelectorFromString(@"configure:index:") withObject:row withObject:@(index)];
                 }
             });
             section.autoHeight();
         }];
     }];
 }
+#pragma clang diagnostic pop
 
 
 @end
