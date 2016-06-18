@@ -76,6 +76,7 @@ void(^didScroll)(UIScrollView * scrollView);
 
         [_tableView cb_makeDataSource:^(CBTableViewDataSourceMaker * make) {
             [make scrollViewDidScroll:didScroll];
+
             [make makeSection:^(CBTableViewSectionMaker * section) {
                 section.cell([CycleScrollViewCell class])
                         .data(@[self.viewModel.ads])

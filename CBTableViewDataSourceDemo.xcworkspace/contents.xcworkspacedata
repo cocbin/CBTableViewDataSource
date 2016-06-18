@@ -5,9 +5,6 @@
       location = "group:CBTableViewDataSourceDemo/CBTableViewDataSourceDemo.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:CBTableViewDataSource/CBTableViewDataSource.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

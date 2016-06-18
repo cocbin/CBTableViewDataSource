@@ -27,7 +27,8 @@
         _tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
         [self.view addSubview:_tableView];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        [_tableView cb_makeSectionWithData:self.viewModel.data withCellClass:[CustomCell class]];
+
+        [_tableView cb_makeSectionWithData:self.viewModel.data andCellClass:[CustomCell class]];
     }
     return _tableView;
 }

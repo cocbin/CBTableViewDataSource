@@ -1,13 +1,32 @@
-# CBTableViewDataSource
-### 更优雅的书写TableView的`delegate`和`dataSource`
+# CBTableViewDataSource 中文文档
 
-### 简介
-CBTableViewDataSource是一个为了简化UITableView的`dataSource`和`delegate`协议重写而产生的框架，使用这个框架，可以快速而有条理的书写`dataSource`和`delegate`，从而使代码的可读性大大提高，减轻了UIViewController的代码负担。
+![demo](media/demo.jpg)
 
+只需一行代码，快速为`UITableView`创建`Delegate`和`DataSource`。
 
-**使用CBTableViewDataSource之前**
+## 简介
+
+`CBTableViewDataSource`是一个轻量级的用于快速创建`UITableView`的`DataSource`和`Delegate`的框架。它提供了一些方便的API，帮助用户以一种快速和有逻辑的方式创建`DataSource`和`Delegate`。
+
+最偷懒的使用方式如下：
 
 ``` objective-c
+[_tableView cb_makeSectionWithData:self.viewModel.data andCellClass:[CustomCell class]];
+```
+没错，只需要一行代码。当然，使用这种方式需要遵循一定的约定。与此同时，我也提供了其他一些灵活的使用方式。具体详情请阅读以下文档。
+
+## 为什么使用
+我们在开发App的时候，往往花费大量的时间在为`UITableView`写`DataSource`和`Delegate`上。而它们往往是一些重复性的并且难以维护的代码。因为它们分散在了各个代理方法中，当我们需要进行修改时，需要到各个代理方法中依次修改它们。
+
+而`CBTableViewDataSource`改变了这种书写方式，它提供一套简练的API，使得我们可以快速地书写有逻辑的，便于维护的代码。
+
+为了让大家看到使用该框架的优势，我们来做一个对比：
+
+使用原生方式创建`DataSource`和`Delegate`:
+
+``` objective-c
+
+// Native vision
 
 // define a enum to split section
 
@@ -60,20 +79,19 @@ typedef NS_ENUM(NSInteger, SectionNameDefine) {
         case SECTION_THREE:
         // to do something
             return cell;
-
+            
             //...
     }
-
+    
     return cell;
 }
 // ...
 
 ```
-
-**使用CBTableViewDataSource之后**
+可以看到，步骤多而繁琐，维护十分困难。
+而使用`CBTableViewDataSource`后
 
 ``` objective-c
-
 [_tableView cb_makeDataSource:^(CBTableViewDataSourceMaker * make) {
     // section one
     [make makeSection:^(CBTableViewSectionMaker *section) {
@@ -97,81 +115,25 @@ typedef NS_ENUM(NSInteger, SectionNameDefine) {
     // ... so on    
 }];
 ```
-使用CBTableViewDataSource，你不需要：
+代码变得简练而富有层次感，更加符合人类的思维方式。
 
-1. 你不需要为每个`cell`类定义一个`identifier`。
-2. 你不需要为每个`cell`注册`identifier`。
-3. 你不需要使用宏或枚举值标记不同的`section`。
-4. 你不需要实现复杂的`delegate`和`dataSource`协议。
-5. 你不需要写一些重复性很强的代码。
+## 用法
 
-使用CBTableViewDataSource，你需要：
+### 安装
 
-1. 使用`cell()`方法设置`section`的`cell`类。
-2. 使用`data()`方法设置`section`的数据。
-3. 使用`adapter()`方法设置section的适配器，用于适配单个cell和单个data。
+使用`cocoapods`下载
 
-使用CBTableViewDataSource，你还可以：
-
-1. 可以使用`headerTitle()`方法，为单个`section`设置`section header`的标题
-2. 可以使用`footerTitle()`方法，为单个`section`设置`section footer`的标题
-3. 可以使用`height()`方法，为单个`section`设置固定的高度
-4. 可以使用`autoHeight()`方法为当个`section`设置自动动态计算高度
-5. 可以使用`event()`方法为单个`section`中的`row`设置触摸事件
-
-### DEMO
-为此我制作了两个DEMO用于展示该框架的用法
-#### **First**
-展示了复杂多section页面时的用法，通过一个仿各种市面上流行的APP的首页，体现了该框架书写dataSource条理清晰，逻辑顺序和页面呈现的顺序完全一致的优点。
-
- <img src="media/IMG_0220.png" width = "400" alt="demo" align=center />
- 
-  <img src="media/IMG_0221.png" width = "400" alt="demo" align=center />
-
-
-
-#### **second**
-通过一个Feed页面，展示了autoHeight的用法。只要调用`autoHeight`函数，一句话解决cell高度计算问题。
-
-<img src="media/IMG_0222.png" width = "400" alt="demo" align=center />
-
-
-
-### 用法
-
-#### Install
-
-框架一共包括以下文件
-
-```
-CBBaseTableViewDataSource.h
-CBBaseTableViewDataSource.m
-CBDataSourceHelper.h
-CBDataSourceHelper.m
-CBDataSourceSection.h
-CBDataSourceSection.m
-CBTableViewDataSource.h
-CBTableViewDataSourceMaker.h
-CBTableViewDataSourceMaker.m
-CBTableViewSectionMaker.h
-CBTableViewSectionMaker.m
-```
-
-可以直接通过Pod下载使用
-
-```
+``` ruby
 pod 'CBTableViewDataSource'
 ```
 
-或者直接将上述四个文件复制到你的项目中即可使用。
-
-#### Import
+### 导入包
 
 ``` objective-c
 #import <CBTableViewDataSource/CBTableViewDataSource.h>
 ```
 
-#### 为TableView设置dataSource
+### 创建`DataSource`和`Delegate`
 
 ``` objective-c
 [_tableView cb_makeDataSource:^(CBTableViewDataSourceMaker * make) {
@@ -198,106 +160,301 @@ pod 'CBTableViewDataSource'
 }];
 ```
 
-## API
-### CBTableViewDataSourceMaker对象
-
-CBTableViewDataSourceMaker对象用于创建dataSource，其上的方法是针对整个dataSource来说的。可是使用UITableView对象的`cb_makeDataSource`方法创建，如下：
+## 例子
+### 仅使用Data
 
 ``` objective-c
-[_tableView cb_makeDataSource:^(CBTableViewDataSourceMaker * make) {
-    // ... do somethings
+UITableView tableView = [UITableView new];
+[tableView cb_makeSectionWithData:data];
+```
+
+使用该方式，Cell使用默认的`UITableViewCell`。
+
+数据需要遵循以下约定：
+
+1. data是一个字典数组（NSArray< NSDictionary* >*）
+2. 字典键必须为以下5个键之一
+    - `text`                映射为`UITableViewCell`的textLabel的文字.
+    - `detail`              映射为`UITableViewCell`的detailTextLabel的文字
+    - `value`               映射为`UITableViewCell`的detailTextLabel的文字
+    - `image`               映射为`UITableViewCell`的imageView的图片
+    - `accessoryType`       设置`UITableViewCell`右边的样式
+
+其中detail和value均映射为`UITableViewCell`的detailTextLabel的文字，如果键为detail，则detailTextLabel显示在textLabel底下。如果键为value，则detailTextLabel显示在`cell`右边。两者只能出现一个，优先级以第一个出现在数组中为先。
+
+例如：
+
+``` objective-c
+_data = @[
+    @{@"text":@"Following",@"value":@"45"},
+    @{@"text":@"Follower",@"value":@"10"},
+    @{@"text":@"Star",@"value":@"234"},
+    @{@"text":@"Setting",@"accessoryType":@(UITableViewCellAccessoryDisclosureIndicator)},
+    @{@"text":@"Share",@"accessoryType":@(UITableViewCellAccessoryDisclosureIndicator)}];
+```
+则显示样式如下：
+
+<img src = "media/IMG_0238.png" width = "375" style="margin:0 auto;"/>
+
+具体详情请下载该项目，查看`DemoTwoViewController.h`和`DemoTwoViewController.m`.
+
+### 使用自定义Cell
+
+``` objective-c
+[tableView cb_makeSectionWithData:data andCellClass:[CustomCell class]];
+```
+
+使用该方式，CustomCell需要提供一个`Configuer:`方法或者`Configuer:index:`方法用于适配数据.
+
+例如: 
+
+``` objective-c
+- (void)configure:(NSDictionary *)row index:(NSNumber * )index {
+    if (row[@"avatar"]) {
+        [self.avatarView setImage:[UIImage imageNamed:row[@"avatar"]]];
+    } else {
+        [self.avatarView setImage:nil];
+    }
+    [self.nameLabel setText:row[@"name"]];
+    [self.titleLabel setText:row[@"title"]];
+    [self.detailLabel setText:row[@"detail"]];
+    self.circleView.hidden = row[@"unread"] == nil;
+
+    if([index intValue] &1) {
+        self.contentView.backgroundColor = [UIColor colorWithRed:0.95 green:0.96 blue:0.96 alpha:1.00];
+    } else {
+        self.contentView.backgroundColor = [UIColor whiteColor];
+    }
+}
+```
+具体用法请查看项目中`CustomCell.h`和`CustomCell.m`文件
+页面样式如下：
+
+<img src = "media/IMG_0237.png" width = "375" style="margin:0 auto;"/>
+
+详情请查看项目中`DemoOneViewController.h`和`DemoOneViewController.m`文件。
+
+### 更灵活的设置
+
+``` objective-c
+[tableView cb_makeSection:^(CBTableViewSectionMaker * section) {
+	section.data(@[]);
+	section.cell([CustomCell class]);
+	section.adapter(^(CustomCell cell,id row,NSUInteger index) {
+		cell.configure(row);
+	});
+	section.event(^() {
+		// do something
+	})
+	// other setting
 }];
 ```
-#### headerView(UIView*(^ )())
-设置tableHeaderView
-参数是一个Block，要求返回一个UIView。
 
-#### footerView(UIView*(^ )())
-设置tableFooterView
-参数是一个Block，要求返回一个UIView。
-常用于取消当页面空白时，tableView呈现多余的下划线。
+这里展示的是单个section的情况。
+
+#### CBTableViewSectionMaker对象支持设置以下属性：
+
+**注意，这些设置都是针对单独的section设置的**
+
+##### data 
+
+设置`UITableView`所要展示的数据。参数是一个NSArray。
+如下：
+
+``` objective-c
+section.data(@[@(goods1),@(goods2),...]);
+```
+
+##### cell
+
+设置`UITableView`展示数据用的Cell Class。该Class会自动注册identifier，无需手动注册
+
 如：
 
 ``` objective-c
-footerView(^(){
-    //返回一个空白View，这样页面没内容时或者内容不足一页，就不会出现多余的线条。
-    return [[UIView alloc]init];
-})
+section.cell([CustomCell class]);
 ```
 
-#### height（CGFloat height）
-设置整个tableView所有row的公共高度，当section未设置固定高度或未设置动态计算高度时，则会自动使用该高度
+##### adapter
 
-#### - (void)commitEditing:(void (^ )(UITableView * tableView,UITableViewCellEditingStyle * editingStyle, NSIndexPath * indexPath))block
-设置编辑状态，当设置了这个block之后，侧滑`row`可以出现删除按钮，可也在该block对其设置点击事件。
+用于适配`Cell`和`Data`，如:
 
-#### - (void)scrollViewDidScroll:(void (^ )(UIScrollView * scrollView))block 
-设置滚动代理，当tableView滚动时，会自动调用该方法。
+``` objection-c
+section.adapter(^(CustomCell * cell,id row,NSUInteger index) {
+    [cell configure:row];
+    // ...
+});
+```
 
-#### - (void)makeSection:(void (^ )(CBTableViewSectionMaker * section))block 
-使用block创建一个section。
+##### event
 
-### CBTableViewSectionMaker对象
-CBTableViewSectionMaker对象可以针对当个section进行设置，可以使用CBTableViewDataSourceMaker对象的makeSection方法创建
+设置点击cell的响应事件。如：
 
 ``` objective-c
-[make makeSection:^(CBTableViewSectionMaker *section) {
-    // ... do somethings
+section.event(^(NSUInteger index,id row) {
+    CustomViewController * controller = [CustomViewController new];
+    controller.viewModel.data = row;
+    [self.navigationController pushViewController:controller animated:YES];
+});
+```
+
+##### height
+
+用于设置cell的高度。传一个固定的值。该高度只对该section有效。如：
+
+``` objective-c
+section.height(100);
+```
+
+##### autoHeight
+
+设置自动动态计算cell高度。用于cell高度不一的场景。
+
+``` objective-c
+section.autoHeight();
+```
+该属性与height冲突，优先级是autoHeight > height。
+也就是说当设置了autoHeight，则height失效，高度以autoHeight为准
+
+##### headerTitle;
+
+设置section的headerTitle。用法如：
+
+``` objective-c
+section.headerTitle("title");
+```
+
+##### footerTitle;
+
+设置section的footerTitle。用法同上。
+
+##### headerView;
+
+设置section的Header View。用法如下：
+
+``` objective-c
+section.headerView(^(){
+    UIView * headerView = [UIView alloc]initWithFrame:CGRectMake(0,0,320,40);
+    // ...
+    return headerView;
+})
+```
+该属性与headerTitle冲突，当设置了headerView，以headerView为准。
+
+##### footerView;
+
+设置section的Footer View。用法同上
+该属性与footerTitle冲突，当设置了footerView，以footerView为准。
+
+### 多个section的情况
+
+``` objective-c
+[tableView cb_makeDataSource:^(CBTableViewDataSourceMaker * make) {
+	[make headerView:^{
+		return [HeaderView new];
+	}];
+	[make makeSection: ^(CBTableViewSectionMaker * section) {
+		section.data(@[]);
+		section.cell();
+		section.adapter();
+		section.event();
+		// ... so on
+	}];
+	[make makeSection: ^(CBTableViewSectionMaker * section) {
+		section.data(@[]);
+		section.cell();
+		section.adapter();
+		section.event();
+		// ... so on
+	}];
+	[make makeSection: ^(CBTableViewSectionMaker * section) {
+		section.data(@[]);
+		section.cell();
+		section.adapter();
+		section.event();
+		// ... so on
+	}];
+	// .. so on
+	[make footView:^{
+		return [FooterView new];
+	}];
+}]
+```
+
+页面样式如下：
+
+<img src = "media/IMG_0239.png" width = "375" style="margin:0 auto;"/>
+
+<img src = "media/IMG_0240.png" width = "375" style="margin:0 auto;"/>
+
+具体的代码请查看项目中`DemoThreeViewController.h`和`DemoThreeViewController.m`文件。
+
+#### CBTableViewDataSourceMaker支持设置以下属性：
+**注意这些属性都是针对整个UITableView**
+
+##### makeSection
+用于为UITableView添加一个section。用法如下：
+
+``` objective-c
+[tableView cb_makeDataSource:^(CBTableViewDataSourceMaker * make) {
+	[make makeSection: ^(CBTableViewSectionMaker * section) {
+	   // ...
+	}
+}]
+```
+
+##### height
+为整个UITableView的Cell设置默认高度。用法如下：
+
+``` objective-c
+make.height(100);
+```
+
+该属性与CBTableViewSectionMaker设置的height和autoHeight冲突。优先级是autoHeight > height(section) > height(UITableView)
+
+也就是说，当一个section设置了autoHeight，则以autoHeight为准，其他section未设置autoHeight，而设置了height（section），则以height（section）为准，如果两者都没有，则以height（UITableView）为准。height默认为40。
+
+##### headerView
+设置UITableView的tableHeaderView，注意与section的headerView的区别，一个UITableView只有一个tableHeaderView。用法如下：
+
+``` objective-c
+make.headerView(^(){
+    UIView * headerView = [[UIView alloc]init];
+    // ...
+    return headerView;
+});
+```
+
+##### footerView
+设置UITableView的tableFooterView，同上。
+
+##### commitEditing
+设置UITableView的commitEditing代理方法，设置了该方法，则cell侧滑可以出现删除按钮。
+可以在刚方法设置当cell处于编辑状态需要处理的事件。用法如下：
+
+``` objective-c
+ [make commitEditing:^(UITableView * tableView, UITableViewCellEditingStyle * editingStyle, NSIndexPath * indexPath) {
+    // do somethings.                
 }];
 ```
 
-#### cell(Class cell)
-传入一个cell的class，如`[UITableViewCell class]`。
-表示当前section都使用这个cell，注意，cell不需要注册，框架会自动注册并绑定identifier
+##### scrollViewDidScroll
+设置UITableView的scrollViewDidScroll代理方法，当UITableView滚动时会调用该方法。
+可以使用该方法处理UITableView的滚动事件。
 
-#### data(NSArray * data)
-传入一个数组，表示用于呈现在界面上的数据
+````objective-c
+[make scrollViewDidScroll:^(UIScrollView * scrollView) {
+    // do somethings                
+}];
+````
 
-#### adapter(^ (id cell,id data,NSUInteger index))
-适配器,使用该方法将数据和cell绑定起来。
-参数是一个block，该block会传来一个cell对象，一个data对象，一个index。
-可以直接在block上对参数类型进行强制转换。
-如：
+## 鸣谢
 
-``` objective-c
-adapter(^(id * cell,id * data,NSUInterger index){
-    cell.data = data;
-})
-```
+感谢您的使用和支持。欢迎issue和pull request，我会在第一时间内处理。
 
+在这个框架中，我参考了许多大神们设计的框架。比如API的设计就参考了著名的AutoLayout框架Masonry。而在动态计算cell的高度上，则参考了@forkingdog的UITableView-FDTemplateLayoutCell的做法。
 
-#### height(CGFloat * height)
-单独为每个section设置一个固定的高度。
+感谢他们带给我的灵感。
 
-- 当使用了autoHeight之后，该设置失效
-
-
-#### autoHeight()
-自动计算cell高度，用于cell高度不固定的情况。
-
-**注意：**
-
-- 当cell的高度固定时，请不要使用autoHeight，因为autoHeight计算高度会消耗一定性能，尽管该框架已经对高度计算做了非常完美的缓存处理，但是对于高性能的追求一定要做到精益求精。
-- 该设置只对**autolayout有效**。
-
-**一定要正确设置好约束：**
-
-- 所有cell里面的组件一定要放在cell.contentView里面，不然会计算错误
-- 一定要有完整的约束。
-
-**确定一个约束是否完整有两个原则**
-
-1. 对于cell内部每个独立的控件，都能确定位置和尺寸，比如左上角定在cell的左上角，然后设置高度宽度确定尺寸，或者设置右下角确定尺寸，前提是右下角相对的组件是能确定位置的。另外，UILabel和UIImageView，这种有内容的控件，只需要确定一个方向的尺寸，就会更具内容自动计算出另一个方向的尺寸，比如label知道宽度，和内容，就能算高度。
-2. 对于cell本身，必须能确定其尺寸。尺寸会通过约束其上下左右的控件来计算，这些所以约束其下和右的控件必须能确定位置和尺寸。值得说的是，这里很容易遗漏掉底部的约束，因为cell就算没有底部约束，也不会报错，但是不能满足计算出cell高度的必要条件。
-
-
-#### event(^ (NSUInteger index,id data))
-参数要求一个Block，用于设置cell的点击事件，index表示点击了当前section的index位置，data表示当前点击位置的数据。
-
-
-#### headerTitle(NSString* title)
-用于设置每个section的Section Header显示的标题。
-
-#### footerTitle(NSString* title)
-用于设置每个section的Section Footer显示的标题。
+如有任何问题需要第一时间得到回答，请加交流群：481987249。
 

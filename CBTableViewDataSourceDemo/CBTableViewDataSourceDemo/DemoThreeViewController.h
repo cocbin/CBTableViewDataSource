@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @class DemoThreeViewModel;
-@class CBTableViewDataSource;
 
 @interface DemoThreeViewController : UIViewController
 

@@ -14,7 +14,7 @@
 
 - (void)cb_makeDataSource:(void (^)(CBTableViewDataSourceMaker * make))maker;
 - (void)cb_makeSectionWithData:(NSArray *)data;
-- (void)cb_makeSectionWithData:(NSArray *)data withCellClass:(Class)cellClass;
+- (void)cb_makeSectionWithData:(NSArray *)data andCellClass:(Class)cellClass;
 
 @end
 

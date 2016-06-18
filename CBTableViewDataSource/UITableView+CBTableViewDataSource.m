@@ -92,7 +92,7 @@ static NSString * getIdentifier (){
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-- (void)cb_makeSectionWithData:(NSArray *)data withCellClass:(Class)cellClass {
+- (void)cb_makeSectionWithData:(NSArray *)data andCellClass:(Class)cellClass {
     [self cb_makeDataSource:^(CBTableViewDataSourceMaker * make) {
         [make makeSection:^(CBTableViewSectionMaker * section) {
             section.data(data);

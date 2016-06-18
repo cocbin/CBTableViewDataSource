@@ -43,9 +43,11 @@
 		789F6ED81FEE20C102577D2C /* goods4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 789F677D3F0C9CFA5B23E27D /* goods4.jpg */; };
 		789F6ED852A45BAC0F8DE33C /* DemoOneViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 789F68AEE6C26439336EA7CC /* DemoOneViewModel.m */; };
 		789F6EFC6F6D7A06B3F36CAD /* image6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 789F68111FD8AE9BEEC30CDE /* image6.jpg */; };
-		D10BD8301D13EAE100525C40 /* CBTableViewDataSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D12640021D03C27700B6393A /* CBTableViewDataSource.framework */; };
-		D10BD8311D13EAE100525C40 /* CBTableViewDataSource.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D12640021D03C27700B6393A /* CBTableViewDataSource.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D16DC3DE1D0D66A000DF572B /* CBTableViewDataSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D16DC3DD1D0D66A000DF572B /* CBTableViewDataSource.framework */; };
+		D105AA591D15A6400081C603 /* CBBaseTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D105AA4F1D15A6400081C603 /* CBBaseTableViewDataSource.m */; };
+		D105AA5A1D15A6400081C603 /* CBDataSourceSection.m in Sources */ = {isa = PBXBuildFile; fileRef = D105AA511D15A6400081C603 /* CBDataSourceSection.m */; };
+		D105AA5B1D15A6400081C603 /* CBTableViewDataSourceMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = D105AA541D15A6400081C603 /* CBTableViewDataSourceMaker.m */; };
+		D105AA5C1D15A6400081C603 /* CBTableViewSectionMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = D105AA561D15A6400081C603 /* CBTableViewSectionMaker.m */; };
+		D105AA5D1D15A6400081C603 /* UITableView+CBTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D105AA581D15A6400081C603 /* UITableView+CBTableViewDataSource.m */; };
 		D19DCFEA1D02EDA900774243 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D19DCFE91D02EDA900774243 /* main.m */; };
 		D19DCFED1D02EDA900774243 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D19DCFEC1D02EDA900774243 /* AppDelegate.m */; };
 		D19DCFF51D02EDA900774243 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D19DCFF41D02EDA900774243 /* Assets.xcassets */; };
@@ -98,20 +100,6 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		D10BD8321D13EAE100525C40 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				D10BD8311D13EAE100525C40 /* CBTableViewDataSource.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		0AB198E3739F177CC76BB0B0 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "../Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		789F60A6300688B70719D0DB /* DemoTwoViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoTwoViewModel.h; sourceTree = "<group>"; };
@@ -163,7 +151,17 @@
 		789F6FD1DD668C300B68C4AB /* DemoOneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoOneViewController.h; sourceTree = "<group>"; };
 		9A33948C3B5480D41722B0F7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "../Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		CA3C787E6E50FFA8477B1F93 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		D12640021D03C27700B6393A /* CBTableViewDataSource.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = CBTableViewDataSource.framework; path = "/Users/Home/Library/Developer/Xcode/DerivedData/CBTableViewDataSourceDemo-besihybosjmnpydgetfvwaxgwkwq/Build/Products/Debug-iphoneos/CBTableViewDataSource.framework"; sourceTree = "<absolute>"; };
+		D105AA4E1D15A6400081C603 /* CBBaseTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBBaseTableViewDataSource.h; sourceTree = "<group>"; };
+		D105AA4F1D15A6400081C603 /* CBBaseTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBBaseTableViewDataSource.m; sourceTree = "<group>"; };
+		D105AA501D15A6400081C603 /* CBDataSourceSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBDataSourceSection.h; sourceTree = "<group>"; };
+		D105AA511D15A6400081C603 /* CBDataSourceSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBDataSourceSection.m; sourceTree = "<group>"; };
+		D105AA521D15A6400081C603 /* CBTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBTableViewDataSource.h; sourceTree = "<group>"; };
+		D105AA531D15A6400081C603 /* CBTableViewDataSourceMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBTableViewDataSourceMaker.h; sourceTree = "<group>"; };
+		D105AA541D15A6400081C603 /* CBTableViewDataSourceMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBTableViewDataSourceMaker.m; sourceTree = "<group>"; };
+		D105AA551D15A6400081C603 /* CBTableViewSectionMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBTableViewSectionMaker.h; sourceTree = "<group>"; };
+		D105AA561D15A6400081C603 /* CBTableViewSectionMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBTableViewSectionMaker.m; sourceTree = "<group>"; };
+		D105AA571D15A6400081C603 /* UITableView+CBTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+CBTableViewDataSource.h"; sourceTree = "<group>"; };
+		D105AA581D15A6400081C603 /* UITableView+CBTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+CBTableViewDataSource.m"; sourceTree = "<group>"; };
 		D16DC3DD1D0D66A000DF572B /* CBTableViewDataSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CBTableViewDataSource.framework; path = "../../../Library/Developer/Xcode/DerivedData/CBTableViewDataSourceDemo-besihybosjmnpydgetfvwaxgwkwq/Build/Products/Debug-iphonesimulator/CBTableViewDataSource.framework"; sourceTree = "<group>"; };
 		D19DCFE51D02EDA800774243 /* CBTableViewDataSourceDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CBTableViewDataSourceDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D19DCFE91D02EDA900774243 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -219,8 +217,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D10BD8301D13EAE100525C40 /* CBTableViewDataSource.framework in Frameworks */,
-				D16DC3DE1D0D66A000DF572B /* CBTableViewDataSource.framework in Frameworks */,
 				1BC3A0A8571E26FA9A7D8DA1 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,10 +256,28 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D105AA4D1D15A6400081C603 /* CBTableViewDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				D105AA4E1D15A6400081C603 /* CBBaseTableViewDataSource.h */,
+				D105AA4F1D15A6400081C603 /* CBBaseTableViewDataSource.m */,
+				D105AA501D15A6400081C603 /* CBDataSourceSection.h */,
+				D105AA511D15A6400081C603 /* CBDataSourceSection.m */,
+				D105AA521D15A6400081C603 /* CBTableViewDataSource.h */,
+				D105AA531D15A6400081C603 /* CBTableViewDataSourceMaker.h */,
+				D105AA541D15A6400081C603 /* CBTableViewDataSourceMaker.m */,
+				D105AA551D15A6400081C603 /* CBTableViewSectionMaker.h */,
+				D105AA561D15A6400081C603 /* CBTableViewSectionMaker.m */,
+				D105AA571D15A6400081C603 /* UITableView+CBTableViewDataSource.h */,
+				D105AA581D15A6400081C603 /* UITableView+CBTableViewDataSource.m */,
+			);
+			path = CBTableViewDataSource;
+			sourceTree = "<group>";
+		};
 		D19DCFDC1D02EDA800774243 = {
 			isa = PBXGroup;
 			children = (
-				D12640021D03C27700B6393A /* CBTableViewDataSource.framework */,
+				D105AA4D1D15A6400081C603 /* CBTableViewDataSource */,
 				D19DD0921D02F88800774243 /* assets */,
 				D19DCFE71D02EDA900774243 /* CBTableViewDataSourceDemo */,
 				D19DD0011D02EDA900774243 /* CBTableViewDataSourceDemoTests */,
@@ -456,7 +470,6 @@
 				D19DCFE31D02EDA800774243 /* Resources */,
 				A14510C3CC5E55171D68E605 /* Embed Pods Frameworks */,
 				56023D2410891AD45AA5CEA0 /* Copy Pods Resources */,
-				D10BD8321D13EAE100525C40 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -668,11 +681,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D105AA5D1D15A6400081C603 /* UITableView+CBTableViewDataSource.m in Sources */,
 				D19DD0DF1D03130400774243 /* HomeCategoryCell.m in Sources */,
+				D105AA5C1D15A6400081C603 /* CBTableViewSectionMaker.m in Sources */,
 				D19DD0911D02F79A00774243 /* CBIconfont.m in Sources */,
 				D19DCFED1D02EDA900774243 /* AppDelegate.m in Sources */,
 				D19DD0D71D02FC3300774243 /* BaseNavigationViewController.m in Sources */,
 				D19DD0CD1D02F94A00774243 /* DemoThreeViewController.m in Sources */,
+				D105AA5A1D15A6400081C603 /* CBDataSourceSection.m in Sources */,
+				D105AA591D15A6400081C603 /* CBBaseTableViewDataSource.m in Sources */,
 				D19DCFEA1D02EDA900774243 /* main.m in Sources */,
 				D19DD0DE1D03130400774243 /* HomeActivityCell.m in Sources */,
 				D19DD0851D02F10100774243 /* MainViewController.m in Sources */,
@@ -685,6 +702,7 @@
 				789F6B7E00660A45E01EC8FA /* FeedCell.m in Sources */,
 				789F6AB3EFECC6249858771D /* DemoTwoViewController.m in Sources */,
 				789F6AB7EBAC1C96DE7CE9D2 /* DemoTwoViewModel.m in Sources */,
+				D105AA5B1D15A6400081C603 /* CBTableViewDataSourceMaker.m in Sources */,
 				789F64F9E9DF667AE165A6D6 /* CustomCell.m in Sources */,
 				789F6A25F42BCFB2BD075929 /* DemoOneViewController.m in Sources */,
 				789F6ED852A45BAC0F8DE33C /* DemoOneViewModel.m in Sources */,
