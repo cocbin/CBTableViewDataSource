@@ -13,7 +13,7 @@
 #import "HomeActivityCell.h"
 #import "GoodsCell.h"
 #import "UINavigationBar+Awesome.h"
-#import <CBTableViewDataSource/CBTableViewDataSource.h>
+#import "CBTableViewDataSource/CBTableViewDataSource.h"
 
 @interface DemoThreeViewController ()
 

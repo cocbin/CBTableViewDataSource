@@ -8,7 +8,7 @@
 #import "DemoFourViewModel.h"
 #import "FeedCell.h"
 #import "UINavigationBar+Awesome.h"
-#import <CBTableViewDataSource/CBTableViewDataSource.h>
+#import "CBTableViewDataSource/CBTableViewDataSource.h"
 
 @implementation DemoFourViewController
 
