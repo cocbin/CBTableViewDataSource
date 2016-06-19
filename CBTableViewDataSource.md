@@ -24,7 +24,7 @@ We always spend a lot of time and energy to create `DataSource` and `Delegate` f
 
 However, `CBTableViewDataSource` changed all this, and provides a simple API to help us create logical and easily maintained code.
 
-In order to make everyone noticed advantage of this framework, let's do a compare.
+In order to make everyone notice advantages of this framework, let's do a compare.
 
 Native way below:
 
@@ -187,7 +187,7 @@ The data must follow convention as follows：
     - `image`               use to set image for `UITableViewCell`'s imageView
     - `accessoryType`       use to set accessory type for `UITableViewCell`
 
-    `value` and `detail` both be use to set text for `UITableViewCell`'s detailTextLabel. If use `detail` as key, the `detailTextLabel` will show at the bottom of `textLabel`. If use `value` as key, the `detailTextLabel` will show at the right of `textLabel`. They cannot do both，and the first appear in array priority.
+    `value` and `detail` both be used to set text for `UITableViewCell`'s detailTextLabel. If use `detail` as key, the `detailTextLabel` will show at the bottom of `textLabel`. If use `value` as key, the `detailTextLabel` will show at the right of `textLabel`. Do not use both of them in the same time，and the first appear in array priority.
 
 For example：
 
